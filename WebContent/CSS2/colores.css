@@ -1,0 +1,49 @@
+body{
+    background-image: url("Images/fondo1.jpg");
+}
+
+.ventana{
+    background-color: wheat;
+    opacity: 0.80;
+}
+
+.boton{
+    background-color: #8d6e63;
+
+}
+
+.ventana2{
+    background-color: wheat;
+    opacity: 0.80;
+}
+
+.ventana3{
+    background-color: wheat;
+    opacity: 0.80;
+}
+
+.ventana4{
+    background-color: wheat;
+    opacity: 0.80;
+}
+
+.ventana5{
+    background-color: wheat;
+    opacity: 0.80;
+}
+
+p{
+    color: #78909c;
+    font-size: 30px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+}
+
+.nav-wrapper{
+    background-color: #ffd8a6;
+    
+}
+
+nav ul li a{
+    color: #4e342e;
+  } 
