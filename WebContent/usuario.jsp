@@ -19,6 +19,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <link rel="stylesheet" href="CSS2/colores.css" type="text/css">
     <link rel="stylesheet" href="CSS2/margenes.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('.modal').modal();
+      });
+    </script>
 </head>
 <body style="background-image: url('Images/fondo1.jpg');">
 	
@@ -51,10 +57,21 @@
 							<td><c:out value="${user.nombre}" /></td>
 							<td><c:out value="${user.apellido}" /></td>
 							<td><c:out value="${user.id}" /></td>
-							<td><a class="waves-effect waves-light btn-small brown" href="edit?id=<c:out value='${user.id}' />">Editar</a>
-								<a class="waves-effect waves-light btn-small brown"
-								 data-target="modal1">Eliminar</a></td>
-								 
+							<td>
+								<a class="waves-effect waves-light btn-small brown" href="edit?id=<c:out value='${user.id}' />">Editar</a>
+								<a class="waves-effect waves-light btn-small brown modal-trigger" href="#modal1">Eliminar</a>
+							</td>					 
+								 <!-- Modal Structure -->
+  									<div id="modal1" class="modal">
+    									<div class="modal-content">
+      										<h4>Confirmar</h4>
+      										<p>¿Deseás eliminar al usuario <c:out value='${user.nombre}'/> <c:out value='${user.apellido}'/>?</p>
+    									</div>
+    								<div class="modal-footer">
+      									<a href="delete?id=<c:out value='${user.id}' />" class="modal-close waves-effect waves-green btn-flat">Eliminar</a>
+      									<a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+    								</div>
+  									</div>
     
 						</tr>
 					</c:forEach>
@@ -70,7 +87,11 @@
                 <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>
             </p> 
         </footer>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
+        
+      
+        
+        </script>
 
 </body>
 </html>

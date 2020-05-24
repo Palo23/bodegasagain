@@ -17,7 +17,7 @@ import com.bodegas.modelo.UsuarioModel;
 /**
  * Servlet implementation class UsuarioServlet
  */
-@WebServlet(name="Usuario", urlPatterns={"/Usuario"})
+@WebServlet(name="UsuarioServlet", urlPatterns={"/bodegasUsuario/", "/"})
 public class UsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UsuarioConexion userConect;
@@ -34,26 +34,26 @@ public class UsuarioServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String action = request.getParameter("action");
+		String action = request.getServletPath();
 
 		try {
 			switch (action) {
-			case "new":
+			case "/new":
 				showNewForm(request, response);
 				break;
-			case "insert":
+			case "/insert":
 				insertUser(request, response);
 				break;
-			case "delete":
+			case "/delete":
 				deleteUser(request, response);
 				break;
-			case "edit":
+			case "/edit":
 				showEditForm(request, response);
 				break;
-			case "update":
+			case "/update":
 				updateUser(request, response);
 				break;
-			case "list":
+			case "/list":
 				listUser(request, response);
 				break;
 			}

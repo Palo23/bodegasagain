@@ -19,7 +19,7 @@ public class UsuarioConexion {
 	private static final String INSERT_USERS_SQL = "INSERT INTO cuenta" + "  (nombre, apellido, dui, direccion, telefono, nombre_usuario, correo, id_rol, contrasena, id_empresa) VALUES "
 			+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-	private static final String SELECT_USER_BY_ID = "select id,nombre,apellido,dui, direccion, telefono, nombre_usuario, correo, id_rol, id_empresa from cuenta where id_usuario =?";
+	private static final String SELECT_USER_BY_ID = "select id_usuario,nombre,apellido,dui, direccion, telefono, nombre_usuario, correo, id_rol, id_empresa from cuenta where id_usuario =?";
 	private static final String SELECT_ALL_USERS = "select * from cuenta";
 	private static final String DELETE_USERS_SQL = "delete from cuenta where id_usuario = ?;";
 	private static final String UPDATE_USERS_SQL = "update cuenta set nombre = ?,nombre_usuario= ?, correo =? where id_usuario = ?;";
