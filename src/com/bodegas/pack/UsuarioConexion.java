@@ -145,7 +145,7 @@ public class UsuarioConexion {
 			statement.setString(2, user.getUsername());
 			statement.setString(3, user.getCorreo());
 			statement.setInt(4, user.getId());
-
+			System.out.println(statement);
 			rowUpdated = statement.executeUpdate() > 0;
 		}
 		return rowUpdated;

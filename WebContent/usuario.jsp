@@ -55,7 +55,7 @@
                   <td><c:out value="${user.apellido}" /></td>
                   <td><c:out value="${user.id}" /></td>
                   <td>
-                    <a class="waves-effect waves-light btn-small brown" href="edit?id=<c:out value='${user.id}' />">Editar</a>
+                    <a class="waves-effect waves-light btn-small brown" href="Usuario?action=edit&id=<c:out value='${user.id}' />">Editar</a>
                     <a class="waves-effect waves-light btn-small brown modal-trigger" href="#<c:out value='${user.id}'/>">Eliminar</a>
                   </td>					 
                                      <!-- Modal Structure -->

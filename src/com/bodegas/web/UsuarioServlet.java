@@ -87,7 +87,9 @@ public class UsuarioServlet extends HttpServlet {
 			throws SQLException, ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		UsuarioModel existingUser = userConect.selectUser(id);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+		List<EmpresaModel> listEmpresa = empresaConect.selectAllEmpresa();
+		request.setAttribute("listEmpresa", listEmpresa);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("newUser.jsp");
 		request.setAttribute("user", existingUser);
 		dispatcher.forward(request, response);
 
