@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bodegas.pack.UsuarioConexion;
 import com.bodegas.modelo.UsuarioModel;
+import com.bodegas.pack.EmpresaConexion;
+import com.bodegas.modelo.EmpresaModel;
 
 /**
  * Servlet implementation class UsuarioServlet
@@ -21,12 +23,14 @@ import com.bodegas.modelo.UsuarioModel;
 public class UsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UsuarioConexion userConect;
+	private EmpresaConexion empresaConect;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public UsuarioServlet() {
     	this.userConect = new UsuarioConexion();
+    	this.empresaConect = new EmpresaConexion();
     }
 
 	/**
@@ -73,7 +77,9 @@ public class UsuarioServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+		List<EmpresaModel> listEmpresa = empresaConect.selectAllEmpresa();
+		request.setAttribute("listEmpresa", listEmpresa);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("newUser.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -101,7 +107,7 @@ public class UsuarioServlet extends HttpServlet {
 		int idEmpresa = Integer.parseInt(request.getParameter("empresa"));
 		UsuarioModel newUser = new UsuarioModel(nombre, apellido, dui, direccion, telefono, username, correo, idRol, contrasena,  idEmpresa);
 		userConect.insertUser(newUser);
-		response.sendRedirect("Usuariolist");
+		response.sendRedirect("Usuario?action=list");
 	}
 
 	private void updateUser(HttpServletRequest request, HttpServletResponse response) 
@@ -119,14 +125,14 @@ public class UsuarioServlet extends HttpServlet {
 
 		UsuarioModel book = new UsuarioModel(id, nombre, apellido, dui, direccion, telefono, username, correo, idRol,  idEmpresa);
 		userConect.updateUser(book);
-		response.sendRedirect("Usuariolist");
+		response.sendRedirect("Usuario?action=list");
 	}
 
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		userConect.deleteUser(id);
-		response.sendRedirect("Usuariolist");
+		response.sendRedirect("Usuario?action=list");
 
 	}
 

@@ -13,8 +13,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>SysInvent</title>
-    <!-- Hoja externa de estilos materialize -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Hoja externa de estilos materialize
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="materialize-v1.0.0/materialize/css/materialize.css">
     <!-- Iconos externos para estilos -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="CSS2/colores.css" type="text/css" >
@@ -34,7 +35,7 @@
             <h5 class="bienvenido2">¿Que deseas gestionar?</h5>
         <div class="collection">
                 <a href="Usuario?action=list" class="collection-item brown-text text-darken-3">Usuarios</a>
-                <a href="empresa.jsp" class="collection-item brown-text text-darken-3">Empresas</a>
+                <a href="Empresa?action=listEmpresa" class="collection-item brown-text text-darken-3">Empresas</a>
                 <a href="inventario.jsp" class="collection-item brown-text text-darken-3">Inventarios</a>
         </div>
     </div>	

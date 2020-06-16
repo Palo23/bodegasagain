@@ -75,6 +75,14 @@ body, html{
     text-align: center;
 }
 
+.pie4{
+    width: 100%;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    text-align: center;
+}
 .ventana2{
     border-radius: 5px;
     padding: 17px;
@@ -115,6 +123,17 @@ body, html{
     height: 385px;
     position: relative;
     top: 42%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.ventana6{
+    border-radius: 5px;
+    padding: 7px;
+    width: 800px;
+    height: 500px;
+    position: relative;
+    top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -178,6 +197,13 @@ body, html{
     position: absolute;
 }
 
+.bienvenido5{
+    width: 500px;
+    top: 7%;
+    left: 64%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+}
 
 .tabla{
     padding: 10px;
@@ -237,4 +263,32 @@ width: calc( 100% - 1em )
 
 table {
     width:100%;
+}
+
+.formulario{
+    border-radius: 10px;
+    padding: 20px;
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.seleccion{
+    border-radius: 5px;
+    padding: 7px;
+    width: 50%;
+    height: 80%;
+    position: relative;
+    float: left;
+
+}
+.muneco{
+    width: 150px;
+    height: 150px;
+    top: 35%;
+    left: 77%;
+    position: absolute;
 }

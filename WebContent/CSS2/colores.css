@@ -32,6 +32,11 @@ body{
     opacity: 0.80;
 }
 
+.ventana6{
+    background-color: wheat;
+    opacity: 0.80;
+}
+
 p{
     color: #78909c;
     font-size: 30px;
@@ -47,3 +52,12 @@ p{
 nav ul li a{
     color: #4e342e;
   } 
+
+  .input-field label {
+    color: #000;
+  }
+
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solid #000;
+    box-shadow: 0 1px 0 0 #000;
+  }
