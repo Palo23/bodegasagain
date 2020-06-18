@@ -17,12 +17,12 @@ public class UsuarioConexion {
 	private String jdbcPassword = "";
 	
 	private static final String INSERT_USERS_SQL = "INSERT INTO cuenta" + "  (nombre, apellido, dui, direccion, telefono, nombre_usuario, correo, id_rol, contrasena, id_empresa) VALUES "
-			+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			+ " (?, ?, ?, ?, ?, ?, ?, ?, SHA2(? ,256), ?);";
 
 	private static final String SELECT_USER_BY_ID = "select id_usuario,nombre,apellido,dui, direccion, telefono, nombre_usuario, correo, id_rol, id_empresa from cuenta where id_usuario =?";
 	private static final String SELECT_ALL_USERS = "select * from cuenta";
 	private static final String DELETE_USERS_SQL = "delete from cuenta where id_usuario = ?;";
-	private static final String UPDATE_USERS_SQL = "update cuenta set nombre = ?,nombre_usuario= ?, correo =? where id_usuario = ?;";
+	private static final String UPDATE_USERS_SQL = "update cuenta set nombre = ?, apellido = ?, dui = ?, direccion = ?, telefono = ?,nombre_usuario= ?, correo =?, id_rol = ?, id_empresa = ? where id_usuario = ?;";
 	
 	public UsuarioConexion() {
 	}
@@ -142,9 +142,15 @@ public class UsuarioConexion {
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
 			statement.setString(1, user.getNombre());
-			statement.setString(2, user.getUsername());
-			statement.setString(3, user.getCorreo());
-			statement.setInt(4, user.getId());
+			statement.setString(2, user.getApellido());
+			statement.setString(3, user.getDui());
+			statement.setString(4, user.getDireccion());
+			statement.setInt(5, user.getTelefono());
+			statement.setString(6, user.getUsername());
+			statement.setString(7, user.getCorreo());
+			statement.setInt(8, user.getId_rol());
+			statement.setInt(9, user.getId_empresa());
+			statement.setInt(10, user.getId());
 			System.out.println(statement);
 			rowUpdated = statement.executeUpdate() > 0;
 		}

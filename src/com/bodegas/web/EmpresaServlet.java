@@ -48,6 +48,9 @@ public class EmpresaServlet extends HttpServlet {
 			case "updateEmpresa":
 				updateEmpresa(request, response);
 				break;
+			case "activarEmpresa":
+				activarEmpresa(request, response);
+				break;
 			case "listEmpresa":
 				listEmpresa(request, response);
 				break;
@@ -115,6 +118,14 @@ public class EmpresaServlet extends HttpServlet {
 			throws SQLException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		empresaConnect.deleteEmpresa(id);
+		response.sendRedirect("Empresa?action=listEmpresa");
+
+	}
+	
+	private void activarEmpresa(HttpServletRequest request, HttpServletResponse response) 
+			throws SQLException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		empresaConnect.activarEmpresa(id);
 		response.sendRedirect("Empresa?action=listEmpresa");
 
 	}

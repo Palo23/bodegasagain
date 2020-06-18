@@ -59,7 +59,7 @@ body, html{
 }
 .pie2{
     width: 100%;
-    bottom: -5%;
+    bottom: -15%;
     left: 50%;
     transform: translate(-50%,-50%);
     position: absolute;
@@ -77,7 +77,7 @@ body, html{
 
 .pie4{
     width: 100%;
-    bottom: 5%;
+    bottom: -20%;
     left: 50%;
     transform: translate(-50%,-50%);
     position: absolute;
@@ -120,9 +120,9 @@ body, html{
     border-radius: 8px;
     padding: 10px;
     width: 700px;
-    height: 385px;
+    height: 500px;
     position: relative;
-    top: 42%;
+    top: 47%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -131,9 +131,9 @@ body, html{
     border-radius: 5px;
     padding: 7px;
     width: 800px;
-    height: 500px;
+    height: 660px;
     position: relative;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -199,8 +199,8 @@ body, html{
 
 .bienvenido5{
     width: 500px;
-    top: 7%;
-    left: 64%;
+    top: 3%;
+    left: 70%;
     transform: translate(-50%,-50%);
     position: absolute;
 }
@@ -230,7 +230,7 @@ body, html{
     width: 600px;
     height: 420px;
     position: relative;
-    top: 70%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -271,7 +271,7 @@ table {
     width: 800px;
     height: 600px;
     position: absolute;
-    top: 75%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -279,7 +279,7 @@ table {
 .seleccion{
     border-radius: 5px;
     padding: 7px;
-    width: 50%;
+    width: 230px;
     height: 80%;
     position: relative;
     float: left;
@@ -288,7 +288,11 @@ table {
 .muneco{
     width: 150px;
     height: 150px;
-    top: 35%;
+    top: 25%;
     left: 77%;
     position: absolute;
+}
+.rowbtns{
+    width: 760px;
+    height: 80px;
 }

@@ -1,16 +1,15 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ page session="true" language="java" import="java.util.*"
+pageEncoding="UTF-8"%>
+<%@ page session="true" language="java" import="java.util.*"
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%
-              	HttpSession sesionNueva = request.getSession();
-    			int roles = (int)sesionNueva.getAttribute("role");
-    			String usuario = (String) sesionNueva.getAttribute("usuario");
-    			String nombre = (String) sesionNueva.getAttribute("nombreUser");
-    			String apellido = (String) sesionNueva.getAttribute("apellido");
-    %>
+<%
+            HttpSession sesionNueva = request.getSession();
+      int roles = (int)sesionNueva.getAttribute("role");
+      String usuario = (String) sesionNueva.getAttribute("usuario");
+      String nombre = (String) sesionNueva.getAttribute("nombreUser");
+      String apellido = (String) sesionNueva.getAttribute("apellido");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +26,7 @@
     <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
 </head>
 <body style="background-image: url('Images/fondo1.jpg');">
+    <div class="navbar-fixed">
 	<nav>
     <div class="nav-wrapper">
             <a href="home.jsp" class="brand-logo"><img class="responsive-image" src="Images/logo3.png"></a>
@@ -35,20 +35,21 @@
       </ul>
     </div>
   </nav>
+</div>
     <div class="ventana5">
     
     
     <!-- Dropdown Trigger -->
-  <a class='dropdown-trigger btn waves-effect waves-light btn-small brown' href='#' data-target='dropdown1'>Acciones</a>
+  <a class='dropdown-trigger btn waves-effect waves-light btn-small brown' href='#' data-target='dropdown1' style="float: right;">Acciones</a>
     
     <!-- Dropdown Structure -->
   <ul id='dropdown1' alignment="left" class='dropdown-content'>
-    <a href="Empresa?action=newEmpresa" class="waves-effect waves-light btn-small brown">Agregar</a>
+    <a href="Empresa?action=newEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Agregar</a>
     <c:if test="${inactivo == 'inactivo'}">
-    	<a href="Empresa?action=listEmpresa" class="waves-effect waves-light btn-small brown">Activas</a>
+    	<a href="Empresa?action=listEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Activas</a>
     </c:if>
     <c:if test="${inactivo != 'inactivo'}">
-    	<a href="Empresa?action=inactivaEmpresa" class="waves-effect waves-light btn-small brown">Inactivas</a>
+    	<a href="Empresa?action=inactivaEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Inactivas</a>
     </c:if>
   </ul>
     
@@ -65,31 +66,50 @@
         
                 <tbody>
                   <!--   for (Todo todo: todos) {  -->
+            
               <c:forEach var="empresa" items="${listEmpresa}">
-    
                 <tr>
+                
                   <td><c:out value="${empresa.id}" /></td>
                   <td><c:out value="${empresa.nombre}" /></td>
                   <td><c:out value="${empresa.direccion}" /></td>
                   <td>
                     <a class="waves-effect waves-light btn-small brown" href="Empresa?action=editEmpresa&id=<c:out value='${empresa.id}' />">Editar</a>
+                    <c:if test="${inactivo == 'inactivo'}">
+                    <a class="waves-effect waves-light btn-small brown modal-trigger" href="#<c:out value='${empresa.id}'/>">Activar</a>
+                    </c:if>
+                    <c:if test="${inactivo != 'inactivo'}">
                     <a class="waves-effect waves-light btn-small brown modal-trigger" href="#<c:out value='${empresa.id}'/>">Eliminar</a>
-                  </td>					 
+                    </c:if>
+                  </td>	
+                </tr>
+                  				 
                                      <!-- Modal Structure -->
                         <div id="<c:out value='${empresa.id}'/>" class="modal">
                           <div class="modal-content">
                               <h4>Confirmar</h4>
+                              <c:if test="${inactivo == 'inactivo'}">
+                              <h5>¿Deseás activar a <c:out value='${empresa.nombre}'/>?</h5>
+                              </c:if>
+                              <c:if test="${inactivo != 'inactivo'}">
                               <h5>¿Deseás eliminar a <c:out value='${empresa.nombre}'/>?</h5>
+                              </c:if>
                           </div>
                         <div class="modal-footer">
-                            <a href="Empresa?action=deleteEmpresa&id=<c:out value='${empresa.id}' />" class="modal-close waves-effect waves-green btn-flat">Eliminar</a>
+                        <c:if test="${inactivo == 'inactivo'}">
+                        <a href="Empresa?action=activarEmpresa&id=<c:out value='${empresa.id}' />" class="modal-close waves-effect waves-green btn-flat">Activar</a>
+                        </c:if>
+                        <c:if test="${inactivo != 'inactivo'}">
+                        <a href="Empresa?action=deleteEmpresa&id=<c:out value='${empresa.id}' />" class="modal-close waves-effect waves-green btn-flat">Eliminar</a>
+                        </c:if>
                             <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
                         </div>
                         </div>
                                     
         
-                </tr>
+                
               </c:forEach>
+            
               <!-- } -->
                 </tbody>
               </table>
@@ -104,6 +124,11 @@
         </footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script>
+        $(document).ready(function(){
+            $('.modal').modal();
+            });
+        
+        s
           $('.dropdown-trigger').dropdown();
             </script>
 

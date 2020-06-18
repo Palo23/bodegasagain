@@ -23,6 +23,7 @@ public class EmpresaConexion {
 	private static final String SELECT_ALL_EMPRESA = "select * from empresa where estado=1";
 	private static final String SELECT_I_EMPRESA = "select * from empresa where estado=0";
 	private static final String DELETE_EMPRESA_SQL = "update empresa set estado=0 where id_empresa=?;";
+	private static final String ACTIVE_EMPRESA_SQL = "update empresa set estado=1 where id_empresa=?;";
 	private static final String UPDATE_EMPRESA_SQL = "update empresa set nombre=?, telefono=?, direccion=? where id_empresa=?;";
 	
 	public EmpresaConexion() {
@@ -142,6 +143,16 @@ public class EmpresaConexion {
 		boolean rowDeleted;
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(DELETE_EMPRESA_SQL);) {
+			statement.setInt(1, id);
+			rowDeleted = statement.executeUpdate() > 0;
+		}
+		return rowDeleted;
+	}
+	
+	public boolean activarEmpresa(int id) throws SQLException {
+		boolean rowDeleted;
+		try (Connection connection = getConnection();
+				PreparedStatement statement = connection.prepareStatement(ACTIVE_EMPRESA_SQL);) {
 			statement.setInt(1, id);
 			rowDeleted = statement.executeUpdate() > 0;
 		}

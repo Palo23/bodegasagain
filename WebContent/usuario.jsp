@@ -40,8 +40,8 @@
                     <thead>
                       <tr>
                           <th class="btns">Nombre</th>
-                          <th class="btns">Apellido</th>
-                          <th class="btns">ID</th>
+                          <th class="btns">Correo</th>
+                          <th class="btns">Teléfono</th>
                           <th>Acciones</th>
                       </tr>
                     </thead>
@@ -51,9 +51,9 @@
               <c:forEach var="user" items="${listUser}">
     
                 <tr>
-                  <td><c:out value="${user.nombre}" /></td>
-                  <td><c:out value="${user.apellido}" /></td>
-                  <td><c:out value="${user.id}" /></td>
+                  <td><c:out value="${user.nombre} ${user.apellido}" /></td>
+                  <td><c:out value="${user.correo}" /></td>
+                  <td><c:out value="${user.telefono}" /></td>
                   <td>
                     <a class="waves-effect waves-light btn-small brown" href="Usuario?action=edit&id=<c:out value='${user.id}' />">Editar</a>
                     <a class="waves-effect waves-light btn-small brown modal-trigger" href="#<c:out value='${user.id}'/>">Eliminar</a>
@@ -65,8 +65,8 @@
                               <h5>¿Deseás eliminar al usuario <c:out value='${user.nombre}'/> <c:out value='${user.apellido}'/>?</h5>
                           </div>
                         <div class="modal-footer">
-                            <a href="delete?id=<c:out value='${user.id}' />" class="modal-close waves-effect waves-green btn-flat">Eliminar</a>
-                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                            <a href="Usuario?action=delete&id=<c:out value='${user.id}' />" class="modal-close waves-effect waves-green btn-flat">Eliminar</a>
+                            <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
                         </div>
                                           </div>
                                     
@@ -85,8 +85,7 @@
                     <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>
                 </p> 
             </footer>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
-            </script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
             <script>
               $(document).ready(function(){
                 $('.modal').modal();
