@@ -4,11 +4,12 @@
 int role = 0;
 String nombreUser;
 String apellido;
+int id_empresa = 0;
 String usuario=request.getParameter("usuario");
 String clave=request.getParameter("clave");
 conexion con = new conexion();
 //buscará una coincidencia (count usuario), si es correcto podrá loguearse
-con.setRs("select count(nombre_usuario), nombre_usuario, id_rol, nombre, apellido from cuenta where nombre_usuario='"+usuario+"' and contrasena=SHA2('"+ clave +"',256)");
+con.setRs("select count(nombre_usuario), nombre_usuario, id_rol, id_empresa, nombre, apellido from cuenta where nombre_usuario='"+usuario+"' and contrasena=SHA2('"+ clave +"',256)");
 //Se esta usando SHA2 con claves de 256 bits
 ResultSet rs = con.getRs();
 rs.next();
@@ -18,6 +19,7 @@ if(rs.getInt(1)==1){
 role = rs.getInt("id_rol");
 nombreUser = rs.getString("nombre");
 apellido = rs.getString("apellido");
+id_empresa = rs.getInt("id_empresa");
 rs.close();
 con.cerrarConexion();
 //se asignan los parámetros de sesión
@@ -26,6 +28,7 @@ sesionOk.setAttribute("usuario",usuario);
 sesionOk.setAttribute("role", role);
 sesionOk.setAttribute("nombreUser", nombreUser);
 sesionOk.setAttribute("apellido", apellido);
+sesionOk.setAttribute("empresa", id_empresa);
 %>
 <jsp:forward page="home.jsp" />
 <%

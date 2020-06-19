@@ -6,6 +6,7 @@
     			String usuario = (String) sesionNueva.getAttribute("usuario");
     			String nombre = (String) sesionNueva.getAttribute("nombreUser");
     			String apellido = (String) sesionNueva.getAttribute("apellido");
+    			int empresa = (int)sesionNueva.getAttribute("empresa");
     %>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,14 +37,14 @@
         <div class="collection">
                 <a href="Usuario?action=list" class="collection-item brown-text text-darken-3">Usuarios</a>
                 <a href="Empresa?action=listEmpresa" class="collection-item brown-text text-darken-3">Empresas</a>
-                <a href="inventario.jsp" class="collection-item brown-text text-darken-3">Inventarios</a>
+                <a href="Inventario?action=show" class="collection-item brown-text text-darken-3">Inventarios</a>
         </div>
     </div>	
 			<% } else if(roles == 2 || roles == 3){ %>
 			<div class="ventana2">
             <h5 class="bienvenido2">¿Que deseas gestionar?</h5>
         <div class="collection">
-                <a href="inventario.jsp" class="collection-item brown-text text-darken-3">Inventarios</a>
+                <a href="Inventario?action=mine&emp=<%=empresa%>" class="collection-item brown-text text-darken-3">Inventarios</a>
         </div>
     </div>		
 			
