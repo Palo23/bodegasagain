@@ -20,6 +20,7 @@ public class UsuarioConexion {
 			+ " (?, ?, ?, ?, ?, ?, ?, ?, SHA2(? ,256), ?);";
 
 	private static final String SELECT_USER_BY_ID = "select id_usuario,nombre,apellido,dui, direccion, telefono, nombre_usuario, correo, id_rol, id_empresa from cuenta where id_usuario =?";
+	private static final String SELECT_USER_BY_EMP = "select id_usuario,nombre,apellido,id_empresa from cuenta where id_empresa =?";
 	private static final String SELECT_ALL_USERS = "select * from cuenta";
 	private static final String DELETE_USERS_SQL = "delete from cuenta where id_usuario = ?;";
 	private static final String UPDATE_USERS_SQL = "update cuenta set nombre = ?, apellido = ?, dui = ?, direccion = ?, telefono = ?,nombre_usuario= ?, correo =?, id_rol = ?, id_empresa = ? where id_usuario = ?;";
@@ -62,6 +63,34 @@ public class UsuarioConexion {
 		} catch (SQLException e) {
 			printSQLException(e);
 		}
+	}
+	
+	public List<UsuarioModel> selectAllUsersEmp(int id) {
+
+		// using try-with-resources to avoid closing resources (boiler plate code)
+		List<UsuarioModel> users = new ArrayList<>();
+		// Step 1: Establishing a Connection
+		try (Connection connection = getConnection();
+
+				// Step 2:Create a statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_EMP);) {
+			preparedStatement.setInt(1, id);
+			System.out.println(preparedStatement);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+
+			// Step 4: Process the ResultSet object.
+			while (rs.next()) {
+				int idUser = rs.getInt("id_usuario");
+				String nombre = rs.getString("nombre");
+				String apellido = rs.getString("apellido");
+				int idEmpresa = rs.getInt("id_empresa");
+				users.add(new UsuarioModel(idUser, nombre, apellido, idEmpresa));
+			}
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		return users;
 	}
 	
 	public UsuarioModel selectUser(int id) {

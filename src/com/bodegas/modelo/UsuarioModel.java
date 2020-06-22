@@ -16,6 +16,14 @@ public class UsuarioModel {
 	public UsuarioModel() {
 	}
 	
+	public UsuarioModel(int id, String nombre, String apellido, int id_empresa) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.id_empresa = id_empresa;
+	}
+
 	public UsuarioModel(String nombre, String apellido, String dui, String direccion, int telefono, String username,
 			String correo, int id_rol, String contrasena, int id_empresa) {
 		super();

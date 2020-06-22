@@ -37,32 +37,21 @@
   </nav>
         
     <div class="ventana6">
-    <c:if test="${empresa != null}">
-    	<h5 class="bienvenido5">Editar Empresa</h5>
-    </c:if>
-    <c:if test="${empresa == null}">
     	<h5 class="bienvenido5">Agregar nueva Empresa</h5>
-    </c:if>
             <div class="muneco">
                 <img class="responsive-img" src="Images/muneco.png">
             </div>
             <!-- bloque 1-->
             <div class="formulario">
             <div class="row">
-            <c:if test="${empresa != null}">
-            	<form action="Empresa?action=updateEmpresa" method="POST" class="col s12">
-            	<input type="hidden" id="id" name="id" value="<c:out value='${empresa.id}'/>">
-            </c:if>
-            <c:if test="${empresa == null}">
                 <form action="Empresa?action=insertEmpresa" method="POST" class="col s12">
-            </c:if>
                 <div class="row">
                     <div class="input-field col s6" style="width: 30%;">
-                        <input id="nombre" name="nombre" value="<c:out value='${empresa.nombre}' />" type="text" class="validate">
+                        <input id="nombre" name="nombre" type="text" class="validate">
                         <label for="nombre">Nombre de Empresa</label>
                     </div>
                     <div class="input-field col s6" style="width: 30%;">
-                        <input id="direccion" name="direccion" value="<c:out value='${empresa.direccion}'/>" type="text" class="validate">
+                        <input id="direccion" name="direccion" type="text" class="validate">
                         <label for="direccion">Dirección de Empresa</label>
                     </div>
                 </div>
@@ -72,21 +61,18 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6"style="width: 30%;">
-                        <input id="telefono" name="telefono" value="<c:out value='${empresa.telefono}' />" type="text" class="validate">
+                        <input id="telefono" name="telefono" type="text" class="validate">
                         <label for="telefono">Teléfono empresa</label>
                     </div>
                 </div>
                 <div class="row">
                     <a href="Empresa?action=listEmpresa" class="waves-effect waves-light btn-small brown" style="float: right; margin-right: 5px;">Cancelar</a>
-                    <c:if test="${empresa != null}">
-                    <button type="submit" class="waves-effect waves-light btn-small brown" style="float: right; margin-right: 5px;">Actualizar</button>
-                    </c:if>
-                    <c:if test="${empresa == null}">
                     <button type="submit" class="waves-effect waves-light btn-small brown" style="float: right; margin-right: 5px;">Agregar</button>
-                    </c:if>
                     
                 </div>
             </form>
+    </div>
+    </div>
     </div>
 
     <footer class="pie4">
@@ -96,7 +82,7 @@
             </p> 
         </footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script type="text/javascript">
+        <script>
         $(":input").inputmask();
 
         $('#telefono').inputmask({"mask": "99999999"});

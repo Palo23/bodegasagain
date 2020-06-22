@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bodegas.modelo.EmpresaModel;
+import com.bodegas.modelo.RegistroModel;
 import com.bodegas.modelo.InventarioModel;
 
 public class InventarioConexion {
@@ -21,6 +21,9 @@ public class InventarioConexion {
 	private static final String SELECT_EMPRESA_BY_ID = "select p.id_producto, p.codigo, p.nombre, p.id_empresa, e.nombre AS nombre_empresa, p.cantidad, p.numero_bodega from producto p JOIN empresa e ON e.id_empresa = p.id_empresa where p.id_empresa=?";
 	private static final String UPDATE_PRODUCT_CANT_SQL = "update producto set cantidad=? where id_producto=?;";
 	private static final String UPDATE_PRODUCT_BOD_SQL = "update producto set numero_bodega=? where id_empresa=?;";
+	private static final String CANT_PRODUCT_SQL = "select cantidad from producto where id_producto=?;";
+	private static final String INSERT_REGISTRO_SQL = "INSERT INTO registro" + "  (entrada, salida, id_producto, cantidad, usuario_recibe, usuario_entrega) VALUES "
+			+ " (?, ?, ?, ?, ?, ?);";
 	
 	public InventarioConexion() {
 	}
@@ -57,7 +60,7 @@ public class InventarioConexion {
 			// Step 4: Process the ResultSet object.
 			while (rs.next()) {
 				int id = rs.getInt("id_producto");
-				int codigo = rs.getInt("codigo");
+				String codigo = rs.getString("codigo");
 				String nombre = rs.getString("nombre");
 				int id_empresa = rs.getInt("id_empresa");
 				String nombreEmpresa = rs.getString("nombre_empresa");
@@ -76,11 +79,29 @@ public class InventarioConexion {
 		// try-with-resource statement will auto close the connection.
 		try (Connection connection = getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PRODUCT_SQL)) {
-			preparedStatement.setInt(1, producto.getCodigo());
+			preparedStatement.setString(1, producto.getCodigo());
 			preparedStatement.setInt(2, producto.getId_empresa());
 			preparedStatement.setString(3, producto.getNombre());
 			preparedStatement.setInt(4, producto.getCantidad());
 			preparedStatement.setInt(5, producto.getNumero_bodega());
+			System.out.println(preparedStatement);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+	}
+	
+	public void insertRegistro(RegistroModel producto) throws SQLException {
+		System.out.println(INSERT_REGISTRO_SQL);
+		// try-with-resource statement will auto close the connection.
+		try (Connection connection = getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_REGISTRO_SQL)) {
+			preparedStatement.setInt(1, producto.getEntrada());
+			preparedStatement.setInt(2, producto.getSalida());
+			preparedStatement.setInt(3, producto.getId_producto());
+			preparedStatement.setInt(4, producto.getCantidad());
+			preparedStatement.setInt(5, producto.getUsuario_recibe());
+			preparedStatement.setInt(6, producto.getUsuario_entrega());
 			System.out.println(preparedStatement);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -102,13 +123,35 @@ public class InventarioConexion {
 			// Step 4: Process the ResultSet object.
 			while (rs.next()) {
 				int id = rs.getInt("id_producto");
-				int codigo = rs.getInt("codigo");
+				String codigo = rs.getString("codigo");
 				String nombre = rs.getString("nombre");
 				int id_empresa = rs.getInt("id_empresa");
 				String nombreEmpresa = rs.getString("nombre_empresa");
 				int cantidad = rs.getInt("cantidad");
 				int numero_bodega = rs.getInt("numero_bodega");
 				producto = new InventarioModel(id, codigo, id_empresa, nombre, nombreEmpresa, cantidad, numero_bodega);
+			}
+		} catch (SQLException e) {
+			printSQLException(e);
+		}
+		return producto;
+	}
+	
+	public InventarioModel selectCantProducto(int idProd) {
+		InventarioModel producto = null;
+		// Step 1: Establishing a Connection
+		try (Connection connection = getConnection();
+				// Step 2:Create a statement using connection object
+				PreparedStatement preparedStatement = connection.prepareStatement(CANT_PRODUCT_SQL);) {
+			preparedStatement.setInt(1, idProd);
+			System.out.println(preparedStatement);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+
+			// Step 4: Process the ResultSet object.
+			while (rs.next()) {
+				int cantidad = rs.getInt("cantidad");
+				producto = new InventarioModel(cantidad);
 			}
 		} catch (SQLException e) {
 			printSQLException(e);

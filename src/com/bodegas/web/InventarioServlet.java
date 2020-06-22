@@ -49,7 +49,7 @@ public class InventarioServlet extends HttpServlet {
 				insertProduct(request, response);
 				break;
 			case "updateCant":
-				showEditForm(request, response);
+				insertRegistro(request, response);
 				break;
 			case "new":
 				showNewForm(request, response);
@@ -73,6 +73,8 @@ public class InventarioServlet extends HttpServlet {
 		request.setAttribute("listEmpresa", listEmpresa);
 		EmpresaModel existingEmpresa = empresaConect.selectEmpresa(id);
 		request.setAttribute("nombreEmpresa", existingEmpresa);
+		List<UsuarioModel> listUsers = userConect.selectAllUsersEmp(id);
+		request.setAttribute("listUsers", listUsers);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("inventario.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -104,27 +106,44 @@ public class InventarioServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		UsuarioModel existingUser = userConect.selectUser(id);
-		List<EmpresaModel> listEmpresa = empresaConect.selectAllEmpresa();
-		request.setAttribute("listEmpresa", listEmpresa);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("newUser.jsp");
-		request.setAttribute("user", existingUser);
-		dispatcher.forward(request, response);
-
-	}
-
 	private void insertProduct(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 		int idEmpresa = Integer.parseInt(request.getParameter("empresa"));
-		int codigo = Integer.parseInt(request.getParameter("codigo"));
+		String codigo = request.getParameter("codigo");
 		String nombre = request.getParameter("nombre");
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 		int numero = Integer.parseInt(request.getParameter("bodega"));
 		InventarioModel newProduct = new InventarioModel(codigo, idEmpresa, nombre, cantidad, numero);
 		inventarioConect.insertProducto(newProduct);
+		response.sendRedirect("Inventario?action=show");
+	}
+	
+	private void insertRegistro(HttpServletRequest request, HttpServletResponse response) 
+			throws SQLException, IOException {
+		int nuevaCantidad = 0;
+		int idProducto = Integer.parseInt(request.getParameter("productoID"));
+		int movimiento = Integer.parseInt(request.getParameter("movimiento"));
+		int cantidadM = Integer.parseInt(request.getParameter("cantidad"));
+		int user = Integer.parseInt(request.getParameter("userExt"));
+		int interno = Integer.parseInt(request.getParameter("userYo"));
+		InventarioModel existingProduct = inventarioConect.selectCantProducto(idProducto);
+		if(movimiento == 1) {
+			int cantidad = existingProduct.getCantidad();
+			nuevaCantidad = cantidadM + cantidad;
+			int entrada = 1;
+			int salida = 0;
+			RegistroModel newRegistro = new RegistroModel(entrada, salida, idProducto, cantidadM, interno, user);
+			inventarioConect.insertRegistro(newRegistro);
+		}else if(movimiento == 2) {
+			int cantidad = existingProduct.getCantidad();
+			nuevaCantidad = cantidad - cantidadM;
+			int salida = 1;
+			int entrada = 0;
+			RegistroModel newRegistro = new RegistroModel(entrada, salida, idProducto, cantidadM, user, interno);
+			inventarioConect.insertRegistro(newRegistro);
+		}
+		InventarioModel book = new InventarioModel(idProducto, nuevaCantidad);
+		inventarioConect.updateProductoC(book);
 		response.sendRedirect("Inventario?action=show");
 	}
 
@@ -146,16 +165,6 @@ public class InventarioServlet extends HttpServlet {
 		response.sendRedirect("Usuario?action=list");
 	}
 
-	/*private void deleteUser(HttpServletRequest request, HttpServletResponse response) 
-			throws SQLException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		userConect.deleteUser(id);
-		response.sendRedirect("Usuario?action=list");
-
-	}*/
-
-	
-	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

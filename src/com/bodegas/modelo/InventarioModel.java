@@ -2,7 +2,7 @@ package com.bodegas.modelo;
 
 public class InventarioModel {
 	private int id;
-	private int codigo;
+	private String codigo;
 	private int id_empresa;
 	private String nombre;
 	private String nombreEmpresa;
@@ -14,7 +14,21 @@ public class InventarioModel {
 	
 	
 	
-	public InventarioModel(int codigo, int id_empresa, String nombre, int cantidad, int numero_bodega) {
+	public InventarioModel(int cantidad) {
+		super();
+		this.cantidad = cantidad;
+	}
+	
+
+	public InventarioModel(int id, int cantidad) {
+		super();
+		this.id = id;
+		this.cantidad = cantidad;
+	}
+
+
+
+	public InventarioModel(String codigo, int id_empresa, String nombre, int cantidad, int numero_bodega) {
 		super();
 		this.codigo = codigo;
 		this.id_empresa = id_empresa;
@@ -25,7 +39,7 @@ public class InventarioModel {
 
 
 
-	public InventarioModel(int id, int codigo, int id_empresa, String nombre, String nombreEmpresa, int cantidad, int numero_bodega) {
+	public InventarioModel(int id, String codigo, int id_empresa, String nombre, String nombreEmpresa, int cantidad, int numero_bodega) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
@@ -36,7 +50,7 @@ public class InventarioModel {
 		this.numero_bodega = numero_bodega;
 	}
 
-	public InventarioModel(int id, int codigo, int id_empresa, String nombre, int cantidad, int numero_bodega) {
+	public InventarioModel(int id, String codigo, int id_empresa, String nombre, int cantidad, int numero_bodega) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
@@ -46,7 +60,7 @@ public class InventarioModel {
 		this.numero_bodega = numero_bodega;
 	}
 
-	public InventarioModel(int id, int codigo, int id_empresa, String nombre, int numero_bodega) {
+	public InventarioModel(int id, String codigo, int id_empresa, String nombre, int numero_bodega) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
@@ -69,10 +83,10 @@ public class InventarioModel {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 	public int getId_empresa() {

@@ -44,11 +44,12 @@ pageEncoding="UTF-8"%>
     
     <!-- Dropdown Structure -->
   <ul id='dropdown1' alignment="left" class='dropdown-content'>
-    <a href="Empresa?action=newEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Agregar</a>
     <c:if test="${inactivo == 'inactivo'}">
+    	<a href="Empresa?action=newEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Agregar</a>
     	<a href="Empresa?action=listEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Activas</a>
     </c:if>
     <c:if test="${inactivo != 'inactivo'}">
+    	<a href="Empresa?action=newEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Agregar</a>
     	<a href="Empresa?action=inactivaEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Inactivas</a>
     </c:if>
   </ul>
@@ -128,7 +129,6 @@ pageEncoding="UTF-8"%>
             $('.modal').modal();
             });
         
-        s
           $('.dropdown-trigger').dropdown();
             </script>
 

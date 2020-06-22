@@ -49,7 +49,7 @@
                     	<div class="seleccion">
                             <label>Seleccionar Empresa</label>
                             <select id="empresa" name="empresa" class="browser-default" style="width: 80%;">
-                                <option value="" disabled selected>-- Opciones --</option>
+                                <option value="" disabled selected>-- Seleccionar empresa --</option>
                                 <c:forEach var="emp" items="${listEmpresa}">
                                 <option value="${emp.id}">${emp.nombre}</option>
                                 </c:forEach>

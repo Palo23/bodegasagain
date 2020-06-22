@@ -79,7 +79,7 @@ public class EmpresaServlet extends HttpServlet {
 	
 	private void showNewEForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("newEmpresa.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("nuevaEmpresa.jsp");
 		dispatcher.forward(request, response);
 	}
 
