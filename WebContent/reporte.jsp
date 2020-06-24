@@ -57,6 +57,7 @@
                         		<h5 class="bienvenido4">Reporte de
                                     <c:out value="${titulo.nombre}"></c:out>
                                 </h5>
+                                <input type="hidden" id="empresaID" name="empresaID" value="<c:out value='${titulo.id}'/>" class="form-control">
                         	</c:if>
                             <c:if test="${nombreEmpresa != null}">
                                 <h5 class="bienvenido4">Reporte de
