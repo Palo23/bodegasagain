@@ -34,7 +34,7 @@ public class RegistroModel {
 	
 
 	public RegistroModel(int id, String fecha, int entrada, int salida, int id_producto, int cantidad, int id_empresa,
-			String nombre_producto, String nombre_empresa, String entrega, String recibe) {
+			String nombre_empresa, String nombre_producto, String entrega, String recibe) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
