@@ -1,1 +1,80 @@
-insert into cuenta values (null, 'prueba','user','05380307-5','Santa Ana','70000000','prueba1','pr@gmail.com',1, SHA2('12345',256), '1', null);
+Buscar por fecha
+
+SELECT o.*, p.nombre AS nombreProducto,  e.nombre_usuario AS entrega, r.nombre_usuario AS recibe 
+ FROM registro o 
+ JOIN cuenta e ON e.id_usuario = o.usuario_entrega
+ JOIN cuenta r ON r.id_usuario = o.usuario_recibe
+ JOIN producto p ON p.id_producto = o.id_producto
+ WHERE date(o.fecha_ingresa) > "?" AND date(o.fecha_ingresa) <= "?" AND em.id_empresa = ?
+ ORDER BY fecha_ingresa DESC;
+ 
+ start == end
+ 
+ SELECT o.*, p.nombre AS nombreProducto, CONCAT_WS(' ', e.nombre, e.apellido) AS entrega, CONCAT_WS(' ', r.nombre, r.apellido) AS recibe 
+ FROM registro o 
+ JOIN cuenta e ON e.id_usuario = o.usuario_entrega
+ JOIN cuenta r ON r.id_usuario = o.usuario_recibe
+ JOIN producto p ON p.id_producto = o.id_producto
+ WHERE date(o.fecha_ingresa) = "2020-06-20"
+ ORDER BY fecha_ingresa DESC;
+
+ entrada/salida
+ 
+ SELECT o.*, p.nombre AS nombreProducto, CONCAT_WS(' ', e.nombre, e.apellido) AS entrega, CONCAT_WS(' ', r.nombre, r.apellido) AS recibe 
+ FROM registro o 
+ JOIN cuenta e ON e.id_usuario = o.usuario_entrega
+ JOIN cuenta r ON r.id_usuario = o.usuario_recibe
+ JOIN producto p ON p.id_producto = o.id_producto
+ WHERE date(o.fecha_ingresa) > "2020-06-20" AND date(o.fecha_ingresa) <= "2020-06-22" AND o.entrada = 1
+ ORDER BY fecha_ingresa DESC;
+ 
+ start == end
+ 
+  SELECT o.*, p.nombre AS nombreProducto, CONCAT_WS(' ', e.nombre, e.apellido) AS entrega, CONCAT_WS(' ', r.nombre, r.apellido) AS recibe 
+ FROM registro o 
+ JOIN cuenta e ON e.id_usuario = o.usuario_entrega
+ JOIN cuenta r ON r.id_usuario = o.usuario_recibe
+ JOIN producto p ON p.id_producto = o.id_producto
+ WHERE date(o.fecha_ingresa) = "2020-06-20" AND o.salida = 1
+ ORDER BY fecha_ingresa DESC;
+ 
+ producto
+ 
+  SELECT o.*, p.nombre AS nombreProducto, CONCAT_WS(' ', e.nombre, e.apellido) AS entrega, CONCAT_WS(' ', r.nombre, r.apellido) AS recibe 
+ FROM registro o 
+ JOIN cuenta e ON e.id_usuario = o.usuario_entrega
+ JOIN cuenta r ON r.id_usuario = o.usuario_recibe
+ JOIN producto p ON p.id_producto = o.id_producto
+ WHERE date(o.fecha_ingresa) > "2020-06-20" AND date(o.fecha_ingresa) <= "2020-06-22" AND o.id_producto = 1
+ ORDER BY fecha_ingresa DESC;
+ 
+ start == end
+ 
+   SELECT o.*, p.nombre AS nombreProducto, CONCAT_WS(' ', e.nombre, e.apellido) AS entrega, CONCAT_WS(' ', r.nombre, r.apellido) AS recibe 
+ FROM registro o 
+ JOIN cuenta e ON e.id_usuario = o.usuario_entrega
+ JOIN cuenta r ON r.id_usuario = o.usuario_recibe
+ JOIN producto p ON p.id_producto = o.id_producto
+ WHERE date(o.fecha_ingresa) > "2020-06-20" AND o.id_producto = 1
+ ORDER BY fecha_ingresa DESC;
+ 
+ empresa
+ 
+   SELECT o.*, em.id_empresa, em.nombre AS nombreEmpresa, p.nombre AS nombreProducto, e.nombre_usuario AS entrega, r.nombre_usuario AS recibe 
+ FROM registro o 
+ JOIN cuenta e ON e.id_usuario = o.usuario_entrega
+ JOIN cuenta r ON r.id_usuario = o.usuario_recibe
+ JOIN producto p ON p.id_producto = o.id_producto
+ JOIN empresa em ON em.id_empresa = p.id_empresa
+ WHERE date(o.fecha_ingresa) > "2020-06-20" AND date(o.fecha_ingresa) <= "2020-06-22" AND em.id_empresa = 2 AND o.id_producto = 1 AND o.entrada = 1
+ ORDER BY fecha_ingresa DESC;
+ 
+ start == end
+ 
+    SELECT o.*, p.nombre AS nombreProducto, CONCAT_WS(' ', e.nombre, e.apellido) AS entrega, CONCAT_WS(' ', r.nombre, r.apellido) AS recibe 
+ FROM registro o 
+ JOIN cuenta e ON e.id_usuario = o.usuario_entrega
+ JOIN cuenta r ON r.id_usuario = o.usuario_recibe
+ JOIN producto p ON p.id_producto = o.id_producto
+ WHERE date(o.fecha_ingresa) > "2020-06-20" AND em.id_empresa = 1
+ ORDER BY fecha_ingresa DESC;

@@ -81,46 +81,46 @@
                                                     <td class="btns2">${prod.nombre}</td>
                                                     <td class="btns2">${prod.nombreEmpresa}</td>
                                                     <td class="btns2">${prod.cantidad}</td>
-                                                    <th>
-                                                        <a href="#<c:out value='${prod.id}'/>" class="btn-floating btn-small waves-effect brown modal-trigger"><i class="material-icons">edit</i></a>
-
-                                                        <!-- Modal Structure -->
-                                                        <div id="<c:out value='${prod.id}'/>" class="modal">
-                                                            <div class="modal-content">
-                                                                <input type="text" value="<c:out value='${nombreEmpresa.nombre}'/>" disabled>
-                                                                <form id="registrarForm" action="Inventario?action=updateCant" method="POST">
-                                                                    <input type="hidden" id="empresaRecarga" name="empresaRecarga" value="<c:out value='${nombreEmpresa.id}'/>">
-                                                                    <input id="userYo" name="userYo" type="hidden" value="<%=idUser%>">
-                                                                    <input id="productoID" name="productoID" type="hidden" value="<c:out value='${prod.id}'/>">
-                                                                    <select id="movimiento" name="movimiento" class="browser-default" style="width: 80%;">
+                                                    <td class="btns2"><a href="#<c:out value='${prod.id}'/>" class="btn-floating btn-small waves-effect brown modal-trigger"><i class="material-icons">edit</i></a></td>
+                                                </tr>
+                                                <!-- Modal para registro de entradas/salidas -->
+                                                <div id="<c:out value='${prod.id}'/>" class="modal" style="top: -25%; width: 80%;">
+                                                    <div class="modal-content">
+                                                        <input type="text" value="<c:out value='${nombreEmpresa.nombre}'/>" disabled>
+                                                        <form id="registrarForm" action="Inventario?action=updateCant" method="POST">
+                                                            <input type="hidden" id="empresaRecarga" name="empresaRecarga" value="<c:out value='${nombreEmpresa.id}'/>">
+                                                            <input id="userYo" name="userYo" type="hidden" value="<%=idUser%>">
+                                                            <input id="productoID" name="productoID" type="hidden" value="<c:out value='${prod.id}'/>">
+                                                            <select id="movimiento" name="movimiento" class="browser-default" style="width: 80%;">
                                                                           <option value="" disabled selected>-- Tipo de movimiento --</option>
                                                                           <option value="1">Entrada</option>
                                                                           <option value="2">Salida</option>
                                                                     </select>
-                                                                    <select id="userExt" name="userExt" class="browser-default" style="width: 80%;">
+                                                            <select id="userExt" name="userExt" class="browser-default" style="width: 80%;">
                                                                           <option value="" disabled selected>-- Usuario externo encargado --</option>
                                                                           <c:forEach var="user" items="${listUsers}">
                                                                             <option value="${user.id}">${user.nombre}</option>
                                                                           </c:forEach>
                                                                     </select>
-                                                                    <input id="cantidad" name="cantidad" placeholder="Cantidad que entra/sale">
-                                                                    <label>Producto disponible</label>
-                                                                    <input id="disponible" name="disponible" value="<c:out value='${prod.cantidad}'/>" disabled>
-                                                                    <div class="modal-footer">
-                                                                        <button onclick="comprobar()" class="modal-close waves-effect waves-green btn-flat">Registrar</button>
-                                                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
-                                                                    </div>
-                                                                </form>
+                                                            <input id="cantidad" name="cantidad" placeholder="Cantidad que entra/sale">
+                                                            <label>Producto disponible</label>
+                                                            <input id="disponible" name="disponible" value="<c:out value='${prod.cantidad}'/>" disabled>
+                                                            <div class="modal-footer">
+                                                                <button onclick="comprobar()" class="modal-close waves-effect waves-green btn-flat">Registrar</button>
+                                                                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
                                                             </div>
-                                                        </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
 
 
-                                                    </th>
+                                                </th>
                                                 </tr>
                                             </c:forEach>
                                         </c:if>
                                         <c:if test="${listProduct == null}">
-                                            <p>No has seleccionado ninguna empresa</p>
+                                        <br><br><br>
+                                            <h5 class="bienvenido6">No has seleccionado ninguna empresa</h5>
                                         </c:if>
                                         <% }else if(roles == 3){ %>
                                             <c:if test="${nombreEmpresa.id == empresa }">
@@ -134,7 +134,8 @@
                                                 </c:forEach>
                                             </c:if>
                                             <c:if test="${nombreEmpresa.id != empresa }">
-                                                <p style="text-align: center;">Esta página no puede ser mostrada</p>
+                                            <br><br><br>
+                                                <h5 class="bienvenido6">Esta página no puede ser mostrada</h5>
                                             </c:if>
                                             <% } %>
                                 </tbody>
@@ -154,61 +155,59 @@
                     $(document).ready(function() {
                         $('.modal').modal();
                     });
-                    
-                   function comprobar(){
-                	   event.preventDefault()
-                	   cantidadActual = document.getElementById('disponible').value
-                	   accion = document.getElementById('movimiento').value
-                	   usuario = document.getElementById('userExt').value
-                	   cantidadModificar = document.getElementById('cantidad').value
-                	   
-                	   if(usuario == ""){
-                		   Swal.fire({
-            				   icon: 'error',
-            				   title: 'Error',
-            				   text: 'Debes seleccionar un usuario',
-            				 })
-                	   }else{
-                		   if(accion == 1){
-                    		   if(cantidadModificar <= 0){
-                    			   Swal.fire({
-                    				   icon: 'error',
-                    				   title: 'Error',
-                    				   text: 'No puedes ingresar valores menores a 0',
-                    				 })
-                    		   }else if(cantidadModificar > 0){
-                    			   document.getElementById('registrarForm').submit();
-                    		   }
-                    	   }else if(accion == 2){
-                    		   if(cantidadModificar > cantidadActual){
-                    			   Swal.fire({
-                    				   icon: 'error',
-                    				   title: 'Error',
-                    				   text: 'La existencia en inventario no es suficiente',
-                    				 })
-                    		   }else if(cantidadModificar <= 0){
-                    			   Swal.fire({
-                    				   icon: 'error',
-                    				   title: 'Error',
-                    				   text: 'No puedes ingresar valores menores a 0',
-                    				 })
-                    		   }else if(cantidadModificar > 0 && cantidadModificar < cantidadActual){
-                    			   document.getElementById('registrarForm').submit();
-                    		   }
-                    	   }else if(accion == ""){
-                    		   Swal.fire({
-                				   icon: 'error',
-                				   title: 'Error',
-                				   text: 'Debes seleccionar el tipo de movimiento',
-                				 })
-                    	   }
-                	   }
-                	   
-                	   
-                	   
-                   }
-                    
-                    
+
+                    function comprobar() {
+                        event.preventDefault()
+                        cantidadActual = document.getElementById('disponible').value
+                        accion = document.getElementById('movimiento').value
+                        usuario = document.getElementById('userExt').value
+                        cantidadModificar = document.getElementById('cantidad').value
+
+                        if (usuario == "") {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Debes seleccionar un usuario',
+                            })
+                        } else {
+                            if (accion == 1) {
+                                if (cantidadModificar <= 0) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        text: 'No puedes ingresar valores menores a 0',
+                                    })
+                                } else if (cantidadModificar > 0) {
+                                    document.getElementById('registrarForm').submit();
+                                }
+                            } else if (accion == 2) {
+                                if (cantidadModificar > cantidadActual) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        text: 'La existencia en inventario no es suficiente',
+                                    })
+                                } else if (cantidadModificar <= 0) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        text: 'No puedes ingresar valores menores a 0',
+                                    })
+                                } else if (cantidadModificar > 0 && cantidadModificar < cantidadActual) {
+                                    document.getElementById('registrarForm').submit();
+                                }
+                            } else if (accion == "") {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Debes seleccionar el tipo de movimiento',
+                                })
+                            }
+                        }
+
+
+
+                    }
                 </script>
 
             </body>

@@ -38,6 +38,7 @@
                 <a href="Usuario?action=list" class="collection-item brown-text text-darken-3">Usuarios</a>
                 <a href="Empresa?action=listEmpresa" class="collection-item brown-text text-darken-3">Empresas</a>
                 <a href="Inventario?action=show" class="collection-item brown-text text-darken-3">Inventarios</a>
+                <a href="Registro?action=show" class="collection-item brown-text text-darken-3">Reportes</a>
         </div>
     </div>	
 			<% } else if(roles == 2 || roles == 3){ %>
