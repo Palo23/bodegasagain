@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bodegas.modelo.*;
 import com.bodegas.pack.*;
 /**
- * Servlet implementation class InventarioServlet
+ * Colocamos el nombre para referirnos a la hora de enviar datos
  */
 @WebServlet(name="Inventario", urlPatterns={"/Inventario"})
 public class InventarioServlet extends HttpServlet {
@@ -37,25 +37,32 @@ public class InventarioServlet extends HttpServlet {
 		try {
 			switch (action) {
 			case "show":
+				//Muestra la vista de inventarios
 				showEmp(request, response);
 				break;
 			case "all":
+				//Muestra el inventario de una empresa específica
 				showAllEmp(request, response);
 				break;
 			case "mine":
+				//Muestra los inventarios de la empresa propia (usuarios externos)
 				showInv(request, response);
 				break;
 			case "insert":
+				//Inserta un nuevo producto al inventario
 				insertProduct(request, response);
 				break;
 			case "updateCant":
+				//Actualiza la cantidad de producto en inventario
 				insertRegistro(request, response);
 				break;
 			case "new":
+				//Muestra el formulario para insertar un nuevo producto
 				showNewForm(request, response);
 				break;
 			case "updateBod":
-				updateUser(request, response);
+				//Actualiza la bodega en la que se guardan los productos
+				//updateUser(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
@@ -67,6 +74,9 @@ public class InventarioServlet extends HttpServlet {
 	private void showAllEmp(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		int id = Integer.parseInt(request.getParameter("idEmpresa"));
+		//Recogemos el id de la empresa para buscar su inventario
+		//Guardamos su inventario en una variable y la enviamos como atributo
+		//Enviamos también la lista de empresas nuevamente para una nueva búsqueda
 		List<InventarioModel> listProduct = inventarioConect.selectAllProductos(id);
 		request.setAttribute("listProduct", listProduct);
 		List<EmpresaModel> listEmpresa = empresaConect.selectAllEmpresa();
@@ -81,6 +91,7 @@ public class InventarioServlet extends HttpServlet {
 	
 	private void showEmp(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		//Obtenemos la lista de empresas
 		List<EmpresaModel> listEmpresa = empresaConect.selectAllEmpresa();
 		request.setAttribute("listEmpresa", listEmpresa);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("inventario.jsp");
@@ -89,6 +100,7 @@ public class InventarioServlet extends HttpServlet {
 	
 	private void showInv(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		//Mostramos el inventario de una empresa específica (usuarios externos)
 		int id = Integer.parseInt(request.getParameter("emp"));
 		List<InventarioModel> listProduct = inventarioConect.selectAllProductos(id);
 		request.setAttribute("listProduct", listProduct);
@@ -100,6 +112,8 @@ public class InventarioServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//Mostramos el formulario de inserción de producto
+		//Pasamos la lista de empresas para seleccionar la empresa a la que pertenece el producto
 		List<EmpresaModel> listEmpresa = empresaConect.selectAllEmpresa();
 		request.setAttribute("listEmpresa", listEmpresa);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("newProduct.jsp");
@@ -108,6 +122,7 @@ public class InventarioServlet extends HttpServlet {
 
 	private void insertProduct(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
+		//Obtenemos los datos para insertar un nuevo producto
 		int idEmpresa = Integer.parseInt(request.getParameter("empresa"));
 		String codigo = request.getParameter("codigo");
 		String nombre = request.getParameter("nombre");
@@ -120,34 +135,44 @@ public class InventarioServlet extends HttpServlet {
 	
 	private void insertRegistro(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
+		//Obtenemos los datos cuando hay un cambio en el inventario
+		//Vamos a guardar el cambio en la tabla registro, pero actualizaremos la cantidad en la tabla producto
 		int nuevaCantidad = 0;
 		int idProducto = Integer.parseInt(request.getParameter("productoID"));
 		int movimiento = Integer.parseInt(request.getParameter("movimiento"));
 		int cantidadM = Integer.parseInt(request.getParameter("cantidad"));
 		int user = Integer.parseInt(request.getParameter("userExt"));
 		int interno = Integer.parseInt(request.getParameter("userYo"));
+		//Buscamos el producto que estamos actualizando 
 		InventarioModel existingProduct = inventarioConect.selectCantProducto(idProducto);
 		if(movimiento == 1) {
+			//obtenemos la cantidad en inventario de ese producto, si es entrada le sumamos lo que ingresamos a lo existente
 			int cantidad = existingProduct.getCantidad();
 			nuevaCantidad = cantidadM + cantidad;
 			int entrada = 1;
 			int salida = 0;
+			//Guardamos el registro del movimiento realizado
 			RegistroModel newRegistro = new RegistroModel(entrada, salida, idProducto, cantidadM, interno, user);
 			inventarioConect.insertRegistro(newRegistro);
 		}else if(movimiento == 2) {
+			//Si es salida restamos la cantidad existente a la que ingresó el usuario
+			//En la vista se hace la comprobación que lo ingresado sea igual o menor a lo existente
+			//por lo cual podemos hacer la resta sin problema, siempre
 			int cantidad = existingProduct.getCantidad();
 			nuevaCantidad = cantidad - cantidadM;
 			int salida = 1;
 			int entrada = 0;
+			//Guardamos el registro del movimiento realizado
 			RegistroModel newRegistro = new RegistroModel(entrada, salida, idProducto, cantidadM, user, interno);
 			inventarioConect.insertRegistro(newRegistro);
 		}
+		//Actualizamos en inventario la cantidad del producto
 		InventarioModel book = new InventarioModel(idProducto, nuevaCantidad);
 		inventarioConect.updateProductoC(book);
 		response.sendRedirect("Inventario?action=show");
 	}
 
-	private void updateUser(HttpServletRequest request, HttpServletResponse response) 
+	/*private void updateUser(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
@@ -163,7 +188,7 @@ public class InventarioServlet extends HttpServlet {
 		UsuarioModel book = new UsuarioModel(id, nombre, apellido, dui, direccion, telefono, username, correo, idRol,  idEmpresa);
 		userConect.updateUser(book);
 		response.sendRedirect("Usuario?action=list");
-	}
+	}*/
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

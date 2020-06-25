@@ -42,6 +42,7 @@
                 </nav>
                 <div class="ventana4">
                     <% if(roles == 1){ %>
+                    <!-- Solo se muestra si es administrador, elegirá la empresa para ver su reporte -->
                         <div class="row" style="width: 643px; top: 15%; position:relative;">
                             <form action="Registro?action=all" method="POST">
                                 <select id="idEmpresa" name="idEmpresa" class="browser-default" onchange="this.form.submit()" style="width: 50%; float: left;">
@@ -63,6 +64,7 @@
                                 <h5 class="bienvenido4">Reporte de
                                     <c:out value="${nombreEmpresa.nombre}"></c:out>
                                 </h5>
+                                <!-- Formulario para elegir las opciones del reporte -->
                                 <form action="Registro?action=showReport" method="POST">
                                 
                                 <input type="hidden" id="empresaID" name="empresaID" value="<c:out value='${nombreEmpresa.id}'/>" class="form-control">

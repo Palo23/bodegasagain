@@ -15,7 +15,7 @@ public class UsuarioModel {
 	
 	public UsuarioModel() {
 	}
-	
+	//Sobrecarga de operadores para las diferentes opciones, dependiendo del tipo de request que se hará
 	public UsuarioModel(int id, String nombre, String apellido, int id_empresa) {
 		super();
 		this.id = id;

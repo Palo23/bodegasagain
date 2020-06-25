@@ -40,48 +40,56 @@ pageEncoding="UTF-8"%>
     
     
     <!-- Dropdown Trigger -->
-  <a class='dropdown-trigger btn waves-effect waves-light btn-small brown' href='#' data-target='dropdown1' style="float: right;">Acciones</a>
-    
+    <div style="top: 8%; position: absolute;  left: 83%;">
+  <a class='dropdown-trigger btn-floating btn waves-effect waves-light btn-large brown' href='#' data-target='dropdown1'><i class="material-icons">list</i></a>
+    </div>
     <!-- Dropdown Structure -->
-  <ul id='dropdown1' alignment="left" class='dropdown-content'>
+  <ul id='dropdown1' alignment="right" class='dropdown-content'>
     <c:if test="${inactivo == 'inactivo'}">
-    	<a href="Empresa?action=newEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Agregar</a>
-    	<a href="Empresa?action=listEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Activas</a>
+    	<a href="Empresa?action=newEmpresa" class="waves-effect waves-teal btn-flat brown-text text-darken-1" style="width: 100px;">Agregar</a>
+    	<a href="Empresa?action=listEmpresa" class="waves-effect waves-teal btn-flat brown-text text-darken-1" style="width: 100px;">Activas</a>
     </c:if>
     <c:if test="${inactivo != 'inactivo'}">
-    	<a href="Empresa?action=newEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Agregar</a>
-    	<a href="Empresa?action=inactivaEmpresa" class="waves-effect waves-light btn-small brown" style="width: 100px;">Inactivas</a>
+    	<a href="Empresa?action=newEmpresa" class="waves-effect waves-teal btn-flat brown-text text-darken-1" style="width: 100px;">Agregar</a>
+    	<a href="Empresa?action=inactivaEmpresa" class="waves-effect waves-teal btn-flat brown-text text-darken-1" style="width: 100px;">Inactivas</a>
     </c:if>
   </ul>
     
             <h5 class="bienvenido3">Tabla de contenido</h5>
             <table class="tabla3">
                 <thead>
-                  <tr>
-                  	  <th class="btns3">ID</th>
-                      <th class="btns3">Nombre</th>
-                      <th class="btns3">Dirección</th>
-                      <th class="btns3">Acciones</th>
-                  </tr>
+                    <tr style="width: 100%;">
+                        <th class="btns3">ID</th>
+                        <th class="btns3">Nombre</th>
+                        <th class="btns3">Direccion</th>
+                        <th class="btns3">Acciones</th>
+                    </tr>
                 </thead>
         
                 <tbody>
-                  <!--   for (Todo todo: todos) {  -->
+                  <!--   for (Todo todo: todos) { recorremos las empresas en la bd y las listamos  -->
             
               <c:forEach var="empresa" items="${listEmpresa}">
                 <tr>
                 
-                  <td><c:out value="${empresa.id}" /></td>
-                  <td><c:out value="${empresa.nombre}" /></td>
-                  <td><c:out value="${empresa.direccion}" /></td>
-                  <td>
-                    <a class="waves-effect waves-light btn-small brown" href="Empresa?action=editEmpresa&id=<c:out value='${empresa.id}' />">Editar</a>
-                    <c:if test="${inactivo == 'inactivo'}">
-                    <a class="waves-effect waves-light btn-small brown modal-trigger" href="#<c:out value='${empresa.id}'/>">Activar</a>
-                    </c:if>
+                  <td class="btns3"><c:out value="${empresa.id}" /></td>
+                  <td class="btns3"><c:out value="${empresa.nombre}" /></td>
+                  <td class="btns3"><c:out value="${empresa.direccion}" /></td>
+                  <td style="text-align: center;">
+                    <div class="row" style="height: 15px; width: 160px;">
+                    <a href="Empresa?action=editEmpresa&id=<c:out value='${empresa.id}' />" 
+                    class="btn-floating btn-small waves-effect brown modal-trigger"><i class="material-icons">edit</i></a>
                     <c:if test="${inactivo != 'inactivo'}">
-                    <a class="waves-effect waves-light btn-small brown modal-trigger" href="#<c:out value='${empresa.id}'/>">Eliminar</a>
+                    <a href="#<c:out value='${empresa.id}'/>" 
+                    class="btn-floating btn-small waves-effect brown modal-trigger" style="margin-left: 5px;"><i class="material-icons">not_interested</i></a>
                     </c:if>
+                    <c:if test="${inactivo == 'inactivo'}">
+                        <label style="margin-left: 5px; margin-top: 50px;">
+                            <input type="checkbox" class="filled-in" checked="checked" />
+                            <span class="brown-text">Activo</span>
+                          </label>
+                    </c:if>
+                    </div>
                   </td>	
                 </tr>
                   				 
@@ -117,7 +125,7 @@ pageEncoding="UTF-8"%>
     
     </div>
 
-    <footer class="pie2">
+    <footer class="pie5">
         <!-- Disclaimer de la pagina -->
             <p>
                 <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>

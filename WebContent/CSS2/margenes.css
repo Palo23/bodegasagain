@@ -68,7 +68,7 @@ body, html{
 
 .pie3{
     width: 100%;
-    bottom: -7%;
+    bottom: -18%;
     left: 50%;
     transform: translate(-50%,-50%);
     position: absolute;
@@ -78,6 +78,15 @@ body, html{
 .pie4{
     width: 100%;
     bottom: -20%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    text-align: center;
+}
+
+.pie5{
+    width: 100%;
+    bottom: -25%;
     left: 50%;
     transform: translate(-50%,-50%);
     position: absolute;
@@ -98,9 +107,9 @@ body, html{
     border-radius: 5px;
     padding: 7px;
     width: 700px;
-    height: 430px;
+    height: 500px;
     position: relative;
-    top: 42%;
+    top: 47%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -120,9 +129,9 @@ body, html{
     border-radius: 8px;
     padding: 10px;
     width: 700px;
-    height: 500px;
+    height: 560px;
     position: relative;
-    top: 47%;
+    top: 52%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -205,12 +214,25 @@ body, html{
     position: absolute;
 }
 
+.bienvenido6{
+    width: 500px;
+    top: 35%;
+    left: 54%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+}
+
+.bienvenido7{
+    width: 10px;
+    transform: translate(-50%,-50%);
+}
+
 .tabla{
     padding: 10px;
     width: 600px;
     height: 450px;
     position: relative;
-    top: 65%;
+    top: 72%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -221,13 +243,13 @@ body, html{
     height: 350px;
     position: relative;
     top: 55%;
-    left: 55%;
+    left: 50%;
     transform: translate(-50%,-50%);
 }
 
 .tabla3{
     padding: 10px;
-    width: 600px;
+    width: 650px;
     height: 420px;
     position: relative;
     top: 55%;
@@ -235,25 +257,22 @@ body, html{
     transform: translate(-50%,-50%);
 }
 
-tbody {
-    display:block;
-    height:290px;
-    width: 600px;
-    overflow:auto;
-}
-
 .btns{
     width: 25.5%;
 }
 
 .btns2{
-    width: 15%;
+    width: 25.5%;
 
 }
 
-thead, tbody tr {
+.btns3{
+    width: 25.5%;
+    height: 25%;
+}
+
+thead tr, tbody tr {
 display:table;
-width:100%;
 table-layout:fixed;
 }
 

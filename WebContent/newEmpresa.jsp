@@ -37,6 +37,7 @@
   </nav>
         
     <div class="ventana6">
+    <!-- Se hace la distinción, si el request trae datos es un edit, sino es un insert -->
     <c:if test="${empresa != null}">
     	<h5 class="bienvenido5">Editar Empresa</h5>
     </c:if>

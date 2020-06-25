@@ -32,7 +32,7 @@ public class RegistroModel {
 	}
 	
 	
-
+	//Sobrecarga de operadores para las diferentes opciones, dependiendo del tipo de request que se hará
 	public RegistroModel(int id, String fecha, int entrada, int salida, int id_producto, int cantidad, int id_empresa,
 			String nombre_empresa, String nombre_producto, String entrega, String recibe) {
 		super();

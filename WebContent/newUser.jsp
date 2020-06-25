@@ -38,6 +38,7 @@
         </div>
         <div class="ventana6">
             <c:if test="${user != null}">
+            <!-- Se hace la distinción, si el request trae datos es un update, sino es un insert -->
             <h5 class="bienvenido5">Editar Usuario</h5>
             </c:if>
             <c:if test="${user == null}">
@@ -161,6 +162,7 @@
          const selectEmpresa = document.getElementById('empresa');
          rol = document.getElementById('idrol').value
          empresa = document.getElementById('idempresa').value
+         //Cuando es un update deja seleccionada la empresa y el rol que le perteneen al usuario
          if(rol != null ){
              for (const option of selectRol.options) {
                    if (option.value == rol) {

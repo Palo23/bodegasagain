@@ -41,6 +41,7 @@
                     </div>
                 </nav>
                 <div class="ventana4">
+                <!-- Si el usuario es admin o inventarista puede ver los invantarios de todas las empresas -->
                     <% if(roles == 1 || roles == 2){ %>
                         <div class="row" style="width: 643px; top: 15%; position:relative;">
                             <form action="Inventario?action=all" method="POST">
@@ -74,6 +75,7 @@
                                 </thead>
                                 <tbody>
                                     <% if(roles == 1 || roles == 2){ %>
+                                    <!-- Recorremos los productos en inventario -->
                                         <c:if test="${listProduct != null}">
                                             <c:forEach var="prod" items="${listProduct}">
                                                 <tr>
@@ -83,6 +85,7 @@
                                                     <td class="btns2">${prod.cantidad}</td>
                                                     <td class="btns2"><a href="#<c:out value='${prod.id}'/>" class="btn-floating btn-small waves-effect brown modal-trigger"><i class="material-icons">edit</i></a></td>
                                                 </tr>
+                                                
                                                 <!-- Modal para registro de entradas/salidas -->
                                                 <div id="<c:out value='${prod.id}'/>" class="modal" style="top: -25%; width: 80%;">
                                                     <div class="modal-content">
@@ -102,7 +105,7 @@
                                                                             <option value="${user.id}">${user.nombre}</option>
                                                                           </c:forEach>
                                                                     </select>
-                                                            <input id="cantidad" name="cantidad" placeholder="Cantidad que entra/sale">
+                                                            <input id="cantidad" name="cantidad" type="number" placeholder="Cantidad que entra/sale">
                                                             <label>Producto disponible</label>
                                                             <input id="disponible" name="disponible" value="<c:out value='${prod.cantidad}'/>" disabled>
                                                             <div class="modal-footer">
@@ -123,6 +126,7 @@
                                             <h5 class="bienvenido6">No has seleccionado ninguna empresa</h5>
                                         </c:if>
                                         <% }else if(roles == 3){ %>
+                                        <!-- Si es rol externo solo puede ver el inventario de su propia empresa -->
                                             <c:if test="${nombreEmpresa.id == empresa }">
                                                 <c:forEach var="prod" items="${listProduct}">
                                                     <tr>
@@ -163,6 +167,7 @@
                         usuario = document.getElementById('userExt').value
                         cantidadModificar = document.getElementById('cantidad').value
 
+                        //Se debe seleccionar un usuario encargado para realizar una modificación en inventario
                         if (usuario == "") {
                             Swal.fire({
                                 icon: 'error',
@@ -170,33 +175,41 @@
                                 text: 'Debes seleccionar un usuario',
                             })
                         } else {
+                        	//Si es una entrada
                             if (accion == 1) {
                                 if (cantidadModificar <= 0) {
+                                	//No se pueden ingresar 0 o valores negativos
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Error',
                                         text: 'No puedes ingresar valores menores a 0',
                                     })
                                 } else if (cantidadModificar > 0) {
+                                	//Si es entrada y la cantidad es mayor a cero se registra
                                     document.getElementById('registrarForm').submit();
                                 }
                             } else if (accion == 2) {
+                            	//Si es salida
                                 if (cantidadModificar > cantidadActual) {
+                                	//Si se intenta sacar del inventario una cantidad mayor a la existente genera un error
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Error',
                                         text: 'La existencia en inventario no es suficiente',
                                     })
                                 } else if (cantidadModificar <= 0) {
+                                	//No se pueden sacar del inventario valores negativos
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Error',
                                         text: 'No puedes ingresar valores menores a 0',
                                     })
                                 } else if (cantidadModificar > 0 && cantidadModificar < cantidadActual) {
+                                	//Si se cumplen las condiciones se registra
                                     document.getElementById('registrarForm').submit();
                                 }
                             } else if (accion == "") {
+                            	//Si no se selecciona entre entrada y salida generará un error
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Error',

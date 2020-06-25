@@ -43,21 +43,27 @@ public class UsuarioServlet extends HttpServlet {
 		try {
 			switch (action) {
 			case "new":
+				//Mostramos el formulario para nuevos usuarios
 				showNewForm(request, response);
 				break;
 			case "insert":
+				//Insertamos un nuevo usuario
 				insertUser(request, response);
 				break;
 			case "delete":
+				//Borramos usuarios
 				deleteUser(request, response);
 				break;
 			case "edit":
+				//Muestra el formulario de edición
 				showEditForm(request, response);
 				break;
 			case "update":
+				//Actualiza los datos de un usuario
 				updateUser(request, response);
 				break;
 			case "list":
+				//Lista los usuarios del sistema
 				listUser(request, response);
 				break;
 			}
@@ -69,6 +75,7 @@ public class UsuarioServlet extends HttpServlet {
 	
 	private void listUser(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		//Obtenemos todos los usuarios del sistema y los mandamos a la vista
 		List<UsuarioModel> listUser = userConect.selectAllUsers();
 		request.setAttribute("listUser", listUser);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("usuario.jsp");
@@ -77,6 +84,7 @@ public class UsuarioServlet extends HttpServlet {
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//Obtenemos la lista de empresas para seleccionar a cual pertenece el nuevo usuario
 		List<EmpresaModel> listEmpresa = empresaConect.selectAllEmpresa();
 		request.setAttribute("listEmpresa", listEmpresa);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("newUser.jsp");
@@ -85,6 +93,7 @@ public class UsuarioServlet extends HttpServlet {
 
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
+		//Obtenemos el usuario a editar y una lista de empresas para seleccionarla
 		int id = Integer.parseInt(request.getParameter("id"));
 		UsuarioModel existingUser = userConect.selectUser(id);
 		List<EmpresaModel> listEmpresa = empresaConect.selectAllEmpresa();
@@ -97,6 +106,7 @@ public class UsuarioServlet extends HttpServlet {
 
 	private void insertUser(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
+		//Obtenemos los datos para la inserción de un nuevo usuario
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String dui = request.getParameter("dui");
@@ -114,6 +124,7 @@ public class UsuarioServlet extends HttpServlet {
 
 	private void updateUser(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
+		//obtenemos los datos para editar el usuario
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
@@ -132,6 +143,7 @@ public class UsuarioServlet extends HttpServlet {
 
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
+		//Obtenemos el id para eliminar el usuario
 		int id = Integer.parseInt(request.getParameter("id"));
 		userConect.deleteUser(id);
 		response.sendRedirect("Usuario?action=list");

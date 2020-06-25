@@ -9,7 +9,7 @@ public class EmpresaModel {
 	
 	public EmpresaModel() {
 	}
-
+	//Sobrecarga de operadores para las diferentes opciones, dependiendo del tipo de request que se hará
 	public EmpresaModel(int id, String nombre, String telefono, String direccion, int estado) {
 		super();
 		this.id = id;

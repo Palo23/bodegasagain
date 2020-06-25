@@ -13,7 +13,7 @@ public class InventarioModel {
 	}
 	
 	
-	
+	//Sobrecarga de operadores para las diferentes opciones, dependiendo del tipo de request que se hará
 	public InventarioModel(int cantidad) {
 		super();
 		this.cantidad = cantidad;

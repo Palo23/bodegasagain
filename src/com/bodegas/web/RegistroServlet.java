@@ -38,12 +38,15 @@ public class RegistroServlet extends HttpServlet {
 		try {
 			switch (action) {
 			case "show":
+				//Mostramos la vista de reportes
 				showEmp(request, response);
 				break;
 			case "all":
+				//Mostramos las opciones para generar el reporte
 				showAllProd(request, response);
 				break;
 			case "showReport":
+				//Mostramos el reporte
 				showReport(request, response);
 				break;
 			}
@@ -55,6 +58,7 @@ public class RegistroServlet extends HttpServlet {
 	
 	private void showAllProd(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		//El usuario seleccionará el producto de cual quiere ver el reporte
 		int id = Integer.parseInt(request.getParameter("idEmpresa"));
 		List<InventarioModel> listProduct = inventarioConect.selectAllProductos(id);
 		request.setAttribute("listProduct", listProduct);
@@ -68,6 +72,7 @@ public class RegistroServlet extends HttpServlet {
 	
 	private void showEmp(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		//Mostramos la lista de empresas de las cuales podemos ver reportes
 		List<EmpresaModel> listEmpresa = empresaConect.selectAllEmpresa();
 		request.setAttribute("listEmpresa", listEmpresa);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("reporte.jsp");
@@ -75,6 +80,7 @@ public class RegistroServlet extends HttpServlet {
 	}
 	private void showReport(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
+		//Recogemos los datos para crear el reporte
 		int empresa = Integer.parseInt(request.getParameter("empresaID"));
 		String producto = request.getParameter("productoID");
 		String movimiento = request.getParameter("tipoMov");
@@ -124,12 +130,14 @@ public class RegistroServlet extends HttpServlet {
 			int idMov = Integer.parseInt(movimiento);
 			
 			if(idMov == 1) {;
+			//Si es entrada
 				List<RegistroModel> listRegistro = registroConect.registroPorEmpresaYProdEntrada(empresa, idProd, sd, ed);
 				request.setAttribute("listRegistro", listRegistro);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("reporte.jsp");
 				dispatcher.forward(request, response);
-			//Si es salida
+				
 			}else if(idMov == 2) {
+				//Si es salida
 				List<RegistroModel> listRegistro = registroConect.registroPorEmpresaYProdSalida(empresa, idProd, sd, ed);
 				request.setAttribute("listRegistro", listRegistro);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("reporte.jsp");

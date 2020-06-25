@@ -16,8 +16,8 @@
         <!-- Hoja externa de estilos materialize 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
         <link rel="stylesheet" href="materialize-v1.0.0/materialize/css/materialize.css">
-        <!-- Iconos externos para estilos 
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+        <!-- Iconos externos para estilos -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="CSS2/colores.css" type="text/css">
         <link rel="stylesheet" href="CSS2/margenes.css" type="text/css">
         <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
@@ -34,11 +34,13 @@
       </nav>
             
         <div class="ventana3">
-        		<a href="Usuario?action=new" class="waves-effect waves-light btn-small brown">Agregar Usuario</a>
-                <h5 class="bienvenido3">Tabla de contenido</h5>
+          <div style="top: 12%; position: absolute;  left: 83%;">
+        		<a href="Usuario?action=new" class="btn-floating btn-large waves-effect brown" style="float: right;"><i class="material-icons">add</i></a>
+          </div>    
+            <h5 class="bienvenido3">Tabla de contenido</h5>
                 <table class="tabla">
                     <thead>
-                      <tr>
+                      <tr style="width: 100%;">
                           <th class="btns">Nombre</th>
                           <th class="btns">Correo</th>
                           <th class="btns">Teléfono</th>
@@ -47,16 +49,18 @@
                     </thead>
                     <tbody>
     
-                <!--   for (Todo todo: todos) {  -->
+                <!--   for (Todo todo: todos) { Recorremos los usuarios en la bd y los listamos  -->
               <c:forEach var="user" items="${listUser}">
     
-                <tr>
+                <tr style="width: 100%;">
                   <td><c:out value="${user.nombre} ${user.apellido}" /></td>
                   <td><c:out value="${user.correo}" /></td>
                   <td><c:out value="${user.telefono}" /></td>
                   <td>
-                    <a class="waves-effect waves-light btn-small brown" href="Usuario?action=edit&id=<c:out value='${user.id}' />">Editar</a>
-                    <a class="waves-effect waves-light btn-small brown modal-trigger" href="#<c:out value='${user.id}'/>">Eliminar</a>
+                    <a href="Usuario?action=edit&id=<c:out value='${user.id}' />" 
+                    class="btn-floating btn-small waves-effect brown modal-trigger"><i class="material-icons">edit</i></a>
+                    <a href="#<c:out value='${user.id}'/>" 
+                    class="btn-floating btn-small waves-effect brown modal-trigger" style="margin-left: 5px;"><i class="material-icons">not_interested</i></a>
                   </td>					 
                                      <!-- Modal Structure -->
                         <div id="<c:out value='${user.id}'/>" class="modal">

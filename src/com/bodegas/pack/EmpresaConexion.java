@@ -46,9 +46,11 @@ public class EmpresaConexion {
 	
 	public void insertEmpresa(EmpresaModel empresa) throws SQLException {
 		System.out.println(INSERT_EMPRESA_SQL);
-		// try-with-resource statement will auto close the connection.
+		// Si el try falla, cerrará la conexión
 		try (Connection connection = getConnection();
+				//Obtenemos el sql que vamos a usar para insertar
 				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_EMPRESA_SQL)) {
+			//Le mandamos los parámetros en el orden que va a recibirlos
 			preparedStatement.setString(1, empresa.getNombre());
 			preparedStatement.setString(2, empresa.getTelefono());
 			preparedStatement.setString(3, empresa.getDireccion());
@@ -61,16 +63,16 @@ public class EmpresaConexion {
 	
 	public EmpresaModel selectEmpresa(int id) {
 		EmpresaModel empresa = null;
-		// Step 1: Establishing a Connection
+		// Step 1: Establecer la conexión
 		try (Connection connection = getConnection();
-				// Step 2:Create a statement using connection object
+				// Step 2:Crear un statement usando la sql
 				PreparedStatement preparedStatement = connection.prepareStatement(SELECT_EMPRESA_BY_ID);) {
 			preparedStatement.setInt(1, id);
 			System.out.println(preparedStatement);
-			// Step 3: Execute the query or update query
+			// Step 3: Ejecutar el query
 			ResultSet rs = preparedStatement.executeQuery();
 
-			// Step 4: Process the ResultSet object.
+			// Step 4: Procesar los resultsets
 			while (rs.next()) {
 				String nombre = rs.getString("nombre");
 				String telefono = rs.getString("telefono");
@@ -87,16 +89,16 @@ public class EmpresaConexion {
 
 		// using try-with-resources to avoid closing resources (boiler plate code)
 		List<EmpresaModel> empresa = new ArrayList<>();
-		// Step 1: Establishing a Connection
+		// Step 1: Establecer la conexión
 		try (Connection connection = getConnection();
 
-				// Step 2:Create a statement using connection object
+				// Step 2:Crear el statement
 			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_EMPRESA);) {
 			System.out.println(preparedStatement);
-			// Step 3: Execute the query or update query
+			// Step 3: Ejecutar la query
 			ResultSet rs = preparedStatement.executeQuery();
 
-			// Step 4: Process the ResultSet object.
+			// Step 4: Procesar el resultset
 			while (rs.next()) {
 				int id = rs.getInt("id_empresa");
 				String nombre = rs.getString("nombre");
@@ -115,16 +117,16 @@ public class EmpresaConexion {
 
 		// using try-with-resources to avoid closing resources (boiler plate code)
 		List<EmpresaModel> empresa = new ArrayList<>();
-		// Step 1: Establishing a Connection
+		//Conexión
 		try (Connection connection = getConnection();
 
-				// Step 2:Create a statement using connection object
+				// Statement
 			PreparedStatement preparedStatement = connection.prepareStatement(SELECT_I_EMPRESA);) {
 			System.out.println(preparedStatement);
-			// Step 3: Execute the query or update query
+			// Ejecutar query
 			ResultSet rs = preparedStatement.executeQuery();
 
-			// Step 4: Process the ResultSet object.
+			// Resultset
 			while (rs.next()) {
 				int id = rs.getInt("id_empresa");
 				String nombre = rs.getString("nombre");
@@ -141,8 +143,10 @@ public class EmpresaConexion {
 	
 	public boolean deleteEmpresa(int id) throws SQLException {
 		boolean rowDeleted;
+		//Preparar la conexión
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(DELETE_EMPRESA_SQL);) {
+			//Pasamos los parámetros
 			statement.setInt(1, id);
 			rowDeleted = statement.executeUpdate() > 0;
 		}
@@ -153,6 +157,7 @@ public class EmpresaConexion {
 		boolean rowDeleted;
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(ACTIVE_EMPRESA_SQL);) {
+			//Pasamos los parámetros
 			statement.setInt(1, id);
 			rowDeleted = statement.executeUpdate() > 0;
 		}
@@ -163,6 +168,7 @@ public class EmpresaConexion {
 		boolean rowUpdated;
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement(UPDATE_EMPRESA_SQL);) {
+			//Pasamos los parámetros para el update
 			statement.setString(1, empresa.getNombre());
 			statement.setString(2, empresa.getTelefono());
 			statement.setString(3, empresa.getDireccion());
@@ -179,6 +185,7 @@ public class EmpresaConexion {
 		for (Throwable e : ex) {
 			if (e instanceof SQLException) {
 				e.printStackTrace(System.err);
+				//Procesamos las excepciones en caso que la aplicación falle
 				System.err.println("SQLState: " + ((SQLException) e).getSQLState());
 				System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
 				System.err.println("Message: " + e.getMessage());
