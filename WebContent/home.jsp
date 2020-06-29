@@ -45,12 +45,13 @@
 			<div class="ventana2">
             <h5 class="bienvenido2">¿Que deseas gestionar?</h5>
         <div class="collection">
-                <a href="Inventario?action=mine&emp=<%=empresa%>" class="collection-item brown-text text-darken-3">Inventarios</a>
         		<% if(roles == 2){ %>
+        		<a href="Inventario?action=show" class="collection-item brown-text text-darken-3">Inventarios</a>
         		<a href="Registro?action=show" class="collection-item brown-text text-darken-3">Reportes</a>
         		<% } //fin if %>
         		<% if(roles == 3){ %>
         		<a href="Registro?action=showExt&reporte=<%=empresa%>" class="collection-item brown-text text-darken-3">Reportes</a>
+        		<a href="Inventario?action=mine&emp=<%=empresa%>" class="collection-item brown-text text-darken-3">Inventarios</a>
         		<% } //fin if %>
         
         </div>
