@@ -35,7 +35,8 @@
             
         <div class="ventana3">
           <div style="top: 12%; position: absolute;  left: 83%;">
-        		<a href="Usuario?action=new" class="btn-floating btn-large waves-effect brown" style="float: right;"><i class="material-icons">add</i></a>
+                <a href="Usuario?action=new" class="btn-floating btn-large btn tooltipped waves-effect brown" 
+                style="float: right;" data-position="right" data-tooltip="Agregar usuario"><i class="material-icons">add</i></a>
           </div>    
             <h5 class="bienvenido3">Tabla de contenido</h5>
                 <table class="tabla">
@@ -58,9 +59,10 @@
                   <td><c:out value="${user.telefono}" /></td>
                   <td>
                     <a href="Usuario?action=edit&id=<c:out value='${user.id}' />" 
-                    class="btn-floating btn-small waves-effect brown modal-trigger"><i class="material-icons">edit</i></a>
+                    class="btn-floating btn-small btn tooltipped waves-effect brown modal-trigger" data-position="bottom" data-tooltip="Editar usuario"><i class="material-icons">edit</i></a>
                     <a href="#<c:out value='${user.id}'/>" 
-                    class="btn-floating btn-small waves-effect brown modal-trigger" style="margin-left: 5px;"><i class="material-icons">not_interested</i></a>
+                    class="btn-floating btn-small btn tooltipped waves-effect brown modal-trigger" 
+                    style="margin-left: 5px;" data-position="bottom" data-tooltip="Eliminar usuario"><i class="material-icons">not_interested</i></a>
                   </td>					 
                                      <!-- Modal Structure -->
                         <div id="<c:out value='${user.id}'/>" class="modal">
@@ -89,6 +91,11 @@
                     <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>
                 </p> 
             </footer>
+            <script>
+                $(document).ready(function(){
+                    $('.tooltipped').tooltip();
+                });
+            </script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
             <script>
               $(document).ready(function(){

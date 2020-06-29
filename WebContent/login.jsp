@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="CSS2/colores.css" type="text/css" >
     <link rel="stylesheet" href="CSS2/margenes.css" type="text/css" >
+    <link href="CSS2/toastr.css" rel="stylesheet"/>
+    <script src="js/jquery-3.5.1.js"></script>
 </head>
 
 <body style="background-image: url('Images/fondo1.jpg');">
@@ -30,11 +32,7 @@
         <%
 			if (request.getParameter("error") != null) {
 		%>
-			<!-- <div class="alert alert-danger">
-			<strong>Error!</strong>
-			<br>
-			</div> -->
-			<p><small><%=request.getParameter("error")%></small></p>
+			<input type="hidden" id="errorLog" name="errorLog" value="<%=request.getParameter("error")%>">
 		<%
 			}//Findelif
 			%>
@@ -48,5 +46,29 @@
         </p> 
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/toastr.js"></script>
+    <script>
+    
+    error = document.getElementById('errorLog').value
+    
+    if(error == 'error'){
+    	toastr.options = {
+    			  "closeButton": false,
+    			  "debug": false,
+    			  "newestOnTop": false,
+    			  "progressBar": false,
+    			  "positionClass": "toast-top-center",
+    			  "preventDuplicates": false,
+    			  "onclick": null
+    			}
+    	
+    	Command: toastr["error"]("Usuario o clave incorrecta", "Error")
+    }
+    
+    
+    
+    
+    
+    </script>
 </body>
 </html>

@@ -86,12 +86,31 @@ body, html{
 
 .pie5{
     width: 100%;
-    bottom: -25%;
+    bottom: -30%;
     left: 50%;
     transform: translate(-50%,-50%);
     position: absolute;
     text-align: center;
 }
+
+.pie6{
+    width: 100%;
+    bottom: -5%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    text-align: center;
+}
+
+.pie7{
+    width: 100%;
+    bottom: 2%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    text-align: center;
+}
+
 .ventana2{
     border-radius: 5px;
     padding: 17px;
@@ -147,6 +166,38 @@ body, html{
     transform: translate(-50%,-50%);
 }
 
+.ventana7{
+    border-radius: 8px;
+    padding: 10px;
+    width: 750px;
+    height: 590px;
+    position: relative;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.ventana8{
+    border-radius: 5px;
+    padding: 7px;
+    width: 800px;
+    height: 420px;
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.ventana9{
+    border-radius: 5px;
+    padding: 7px;
+    width: 800px;
+    height: 380px;
+    position: relative;
+    top: 36%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
 
 .loggin2{
     border: 1px solid #9c5518;
@@ -223,8 +274,19 @@ body, html{
 }
 
 .bienvenido7{
-    width: 10px;
+    width: 500px;
+    top: 33%;
+    left: 58%;
     transform: translate(-50%,-50%);
+    position: absolute;
+}
+
+.bienvenido8{
+    width: 500px;
+    top: 3%;
+    left: 65%;
+    transform: translate(-50%,-50%);
+    position: absolute;
 }
 
 .tabla{
@@ -242,7 +304,7 @@ body, html{
     width: 700px;
     height: 350px;
     position: relative;
-    top: 55%;
+    top: 47%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -253,6 +315,16 @@ body, html{
     height: 420px;
     position: relative;
     top: 55%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.tabla4{
+    padding: 10px;
+    width: 700px;
+    height: 350px;
+    position: relative;
+    top: 62%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -311,6 +383,23 @@ table {
     left: 77%;
     position: absolute;
 }
+
+.muneco2{
+    width: 250px;
+    height: 190px;
+    top: 2%;
+    left: 68%;
+    position: absolute;
+}
+
+.muneco3{
+    width: 250px;
+    height: 250px;
+    top: 15%;
+    left: 70%;
+    position: absolute;
+}
+
 .rowbtns{
     width: 760px;
     height: 80px;

@@ -10,7 +10,7 @@
     			String apellido = (String) sesionNueva.getAttribute("apellido");
     			int empresa = (int)sesionNueva.getAttribute("empresa");
     %>
-            <!DOCTYPE html>
+    <!DOCTYPE html>
             <html lang="en">
 
             <head>
@@ -28,6 +28,7 @@
             </head>
 
             <body style="background-image: url('Images/fondo1.jpg');">
+                <div class="navbar-fixed">
                 <nav>
                     <div class="nav-wrapper">
                         <a href="home.jsp" class="brand-logo"><img class="responsive-image" src="Images/logo3.png"></a>
@@ -40,12 +41,13 @@
                         </ul>
                     </div>
                 </nav>
-                <div class="ventana4">
-                    <% if(roles == 1){ %>
-                    <!-- Solo se muestra si es administrador, elegirá la empresa para ver su reporte -->
-                        <div class="row" style="width: 643px; top: 15%; position:relative;">
+                </div>
+                <div class="ventana7">
+                    <% if(roles == 1 || roles == 2){ %>
+                    <!-- Solo se muestra si es administrador o inventarista, elegirá la empresa para ver su reporte -->
+                        <div class="row" style="width: 80%; top: 15%; left: 3%; position: absolute; height: 30px;">
                             <form action="Registro?action=all" method="POST">
-                                <select id="idEmpresa" name="idEmpresa" class="browser-default" onchange="this.form.submit()" style="width: 50%; float: left;">
+                                <select id="idEmpresa" name="idEmpresa" class="browser-default" onchange="this.form.submit()" style="width: 50%; float: left; height: 35px;">
    									<option value="" disabled selected>-- Selecciona la empresa --</option>
    									<option value="0">Todas</option>
    									<c:forEach var="emp" items="${listEmpresa}">
@@ -68,11 +70,11 @@
                                 <form action="Registro?action=showReport" method="POST">
                                 
                                 <input type="hidden" id="empresaID" name="empresaID" value="<c:out value='${nombreEmpresa.id}'/>" class="form-control">
-								<br><br><br>
-								<div class="row">
+								
+								<div class="row" style="position: absolute; top: 25%; left: 2%; height: 70px;">
 								
 								<div class="col s3">
-									<select id="productoID" name="productoID" class="browser-default">
+									<select id="productoID" name="productoID" class="browser-default" style="height: 35px;">
 										<option value="">--  Producto --</option>
 										<c:forEach var="producto" items="${listProduct}">
                     					<option value="${producto.id}">${producto.nombre}</option>
@@ -81,26 +83,27 @@
 								</div>
 								
 								<div class="col s3">
-									<select id="tipoMov" name="tipoMov" class="browser-default">
-										<option value="">--  Tipo de movimiento --</option>
+									<select id="tipoMov" name="tipoMov" class="browser-default" style="height: 35px;">
+										<option value="">-- Transaccion --</option>
 										<option value="1">Entrada</option>
 										<option value="2">Salida</option>
 									</select>
 								</div>
                                 
                                 <div class="col s3">
-									<input type="date" id="sd" name="sd" class="form-control">
+									<input type="date" id="sd" name="sd" class="form-control"  style="width: 150px;">
 								</div>
 								<div class="col s3">
-									<input type="date" id="ed" name="ed" class="form-control">
+									<input type="date" id="ed" name="ed" class="form-control" style="width: 150px;">
 								</div>
-									<button type="submit">Ver Reporte</button>
+                                    <button class="btn-floating btn-small btn tooltipped waves-effect brown" type="submit" 
+                                    style="left: 3%; top: 50%;" data-position="bottom" data-tooltip="Mostrar reportes"><i class="material-icons">search</i></button>
 								</div>
 								</form>
                             </c:if>
-                            <table class="tabla2">
+                            <table class="tabla4">
                                 <thead>
-                                    <tr>
+                                    <tr style="width: 100%;">
                                         <th class="btns2">Tipo de movimiento</th>
                                         <th class="btns2">Cantidad</th>
                                         <th class="btns2">Producto</th>
@@ -112,7 +115,7 @@
                                 <tbody>
                                 			<c:if test="${listRegistro != null}">
                                             <c:forEach var="registro" items="${listRegistro}">
-                                                <tr>
+                                                <tr style="width: 100%;">
                                                 <c:if test="${registro.entrada == 1}">
                                                 	<td class="btns2">Entrada</td>
                                                 </c:if>
@@ -127,20 +130,25 @@
                                                 </tr>
                                             </c:forEach>
                                         </c:if>
-                                        <% }else if(roles != 1){ %>
-                                                <h5 class="bienvenido6">Esta página no puede ser mostrada</h5>
+                                        <% }else if(roles == 3){ %>
+                                                <h5 class="bienvenido7">Esta página no puede ser mostrada</h5>
                                             <% } %>
                                 </tbody>
                             </table>
 
                 </div>
 
-                <footer class="pie3">
+                <footer class="pie5">
                     <!-- Disclaimer de la pagina -->
                     <p>
                         <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>
                     </p>
                 </footer>
+                <script>
+                    $(document).ready(function(){
+                        $('.tooltipped').tooltip();
+                    });
+                </script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
                 <script>

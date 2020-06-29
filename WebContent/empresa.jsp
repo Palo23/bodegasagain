@@ -41,7 +41,7 @@ pageEncoding="UTF-8"%>
     
     <!-- Dropdown Trigger -->
     <div style="top: 8%; position: absolute;  left: 83%;">
-  <a class='dropdown-trigger btn-floating btn waves-effect waves-light btn-large brown' href='#' data-target='dropdown1'><i class="material-icons">list</i></a>
+  <a class="dropdown-trigger btn-floating btn tooltipped waves-effect waves-light btn-large brown" href='#' data-target='dropdown1' data-position="right" data-tooltip="Opciones"><i class="large material-icons">expand_more</i></a>
     </div>
     <!-- Dropdown Structure -->
   <ul id='dropdown1' alignment="right" class='dropdown-content'>
@@ -78,16 +78,14 @@ pageEncoding="UTF-8"%>
                   <td style="text-align: center;">
                     <div class="row" style="height: 15px; width: 160px;">
                     <a href="Empresa?action=editEmpresa&id=<c:out value='${empresa.id}' />" 
-                    class="btn-floating btn-small waves-effect brown modal-trigger"><i class="material-icons">edit</i></a>
+                    class="btn-floating btn-small btn tooltipped waves-effect brown modal-trigger" data-position="bottom" data-tooltip="Editar empresa"><i class="material-icons">edit</i></a>
                     <c:if test="${inactivo != 'inactivo'}">
                     <a href="#<c:out value='${empresa.id}'/>" 
-                    class="btn-floating btn-small waves-effect brown modal-trigger" style="margin-left: 5px;"><i class="material-icons">not_interested</i></a>
+                    class="btn-floating btn-small btn tooltipped waves-effect brown modal-trigger" style="margin-left: 5px;" data-position="bottom" data-tooltip="Eliminar empresa"><i class="material-icons">not_interested</i></a>
                     </c:if>
                     <c:if test="${inactivo == 'inactivo'}">
-                        <label style="margin-left: 5px; margin-top: 50px;">
-                            <input type="checkbox" class="filled-in" checked="checked" />
-                            <span class="brown-text">Activo</span>
-                          </label>
+                        <a href="#<c:out value='${empresa.id}'/>" 
+                    class="btn-floating btn-small btn tooltipped waves-effect brown modal-trigger" style="margin-left: 5px;" data-position="bottom" data-tooltip="Activar empresa"><i class="material-icons">spellcheck</i></a>
                     </c:if>
                     </div>
                   </td>	
@@ -131,6 +129,11 @@ pageEncoding="UTF-8"%>
                 <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>
             </p> 
         </footer>
+        <script>
+            $(document).ready(function(){
+                $('.tooltipped').tooltip();
+            });
+        </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script>
         $(document).ready(function(){

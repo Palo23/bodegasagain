@@ -36,15 +36,16 @@
         </div>
       </nav>
         </div>
-        <div class="ventana6">
+        <div class="ventana8">
             <h5 class="bienvenido5">Agregar Producto</h5>
-                <div class="muneco">
-                    <img class="responsive-img" src="Images/muneco.png">
+                <div class="muneco3">
+                    <img class="responsive-img" src="Images/muneco3.png">
                 </div>
                 <!-- bloque 1-->
                 <div class="formulario">
                 <div class="row">
-                <form action="Inventario?action=insert" method="POST" class="col s12">
+                <form action="Inventario?action=insert" method="POST" class="col s12"
+                style="position: absolute; top: 20%;">
                     <div class="row">
                     	<div class="seleccion">
                             <label>Seleccionar Empresa</label>
@@ -85,7 +86,7 @@
                 </form>
         </div>
     
-        <footer class="pie4">
+        <footer class="pie6">
             <!-- Disclaimer de la pagina -->
                 <p>
                     <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>

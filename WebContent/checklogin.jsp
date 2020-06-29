@@ -39,7 +39,7 @@ sesionOk.setAttribute("empresa", id_empresa);
 else{
 %>
 <jsp:forward page="login.jsp">
-<jsp:param name="error" value="Usuario y/o clave incorrecto. Vuelve a intentarlo."/>
+<jsp:param name="error" value="error"/>
 </jsp:forward>
 <%
 }

@@ -37,6 +37,21 @@ body{
     opacity: 0.80;
 }
 
+.ventana7{
+    background-color: wheat;
+    opacity: 0.80;
+}
+
+.ventana8{
+    background-color: wheat;
+    opacity: 0.80;
+}
+
+.ventana9{
+    background-color: wheat;
+    opacity: 0.80;
+}
+
 p{
     color: #78909c;
     font-size: 30px;
@@ -61,3 +76,4 @@ nav ul li a{
     border-bottom: 1px solid #000;
     box-shadow: 0 1px 0 0 #000;
   }
+
