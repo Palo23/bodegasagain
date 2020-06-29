@@ -96,26 +96,26 @@
                                         <div id="<c:out value='${prod.id}'/>" class="modal" style="top: -25%; width: 80%;">
                                             <div class="modal-content">
                                                 <input type="text" value="<c:out value='${nombreEmpresa.nombre}'/>" disabled>
-                                                <form id="registrarForm" action="Inventario?action=updateCant" method="POST">
-                                                    <input type="hidden" id="empresaRecarga" name="empresaRecarga" value="<c:out value='${nombreEmpresa.id}'/>">
-                                                    <input id="userYo" name="userYo" type="hidden" value="<%=idUser%>">
-                                                    <input id="productoID" name="productoID" type="hidden" value="<c:out value='${prod.id}'/>">
-                                                    <select id="movimiento" name="movimiento" class="browser-default" style="width: 80%;">
+                                                <form id="registrarForm<c:out value='${prod.id}'/>" action="Inventario?action=updateCant" method="POST">
+                                                    <input type="hidden" id="empresaRecarga<c:out value='${prod.id}'/>" name="empresaRecarga" value="<c:out value='${nombreEmpresa.id}'/>">
+                                                    <input id="userYo<c:out value='${prod.id}'/>" name="userYo" type="hidden" value="<%=idUser%>">
+                                                    <input id="productoID<c:out value='${prod.id}'/>" name="productoID" type="hidden" value="<c:out value='${prod.id}'/>">
+                                                    <select id="movimiento<c:out value='${prod.id}'/>" name="movimiento" class="browser-default" style="width: 80%;">
                                                                   <option value="" disabled selected>-- Tipo de movimiento --</option>
                                                                   <option value="1">Entrada</option>
                                                                   <option value="2">Salida</option>
                                                             </select>
-                                                    <select id="userExt" name="userExt" class="browser-default" style="width: 80%;">
+                                                    <select id="userExt<c:out value='${prod.id}'/>" name="userExt" class="browser-default" style="width: 80%;">
                                                                   <option value="" disabled selected>-- Usuario externo encargado --</option>
                                                                   <c:forEach var="user" items="${listUsers}">
                                                                     <option value="${user.id}">${user.nombre}</option>
                                                                   </c:forEach>
                                                             </select>
-                                                    <input id="cantidad" name="cantidad" type="number" placeholder="Cantidad que entra/sale">
+                                                    <input id="cantidad<c:out value='${prod.id}'/>" name="cantidad" type="number" placeholder="Cantidad que entra/sale">
                                                     <label>Producto disponible</label>
-                                                    <input id="disponible" name="disponible" value="<c:out value='${prod.cantidad}'/>" disabled>
+                                                    <input id="disponible<c:out value='${prod.id}'/>" name="disponible" value="<c:out value='${prod.cantidad}'/>" disabled>
                                                     <div class="modal-footer">
-                                                        <button onclick="comprobar()" class="modal-close waves-effect waves-green btn-flat">Registrar</button>
+                                                        <button onclick="comprobar(<c:out value='${prod.id}'/>)" class="modal-close waves-effect waves-green btn-flat">Registrar</button>
                                                         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
                                                     </div>
                                                 </form>
@@ -170,13 +170,14 @@
             $(document).ready(function() {
                 $('.modal').modal();
             });
-
-            function comprobar() {
+            
+            function comprobar(idjs) {
                 event.preventDefault()
-                cantidadActual = document.getElementById('disponible').value
-                accion = document.getElementById('movimiento').value
-                usuario = document.getElementById('userExt').value
-                cantidadModificar = document.getElementById('cantidad').value
+                idProd = idjs
+                cantidadActual = parseInt(document.getElementById('disponible'+idProd).value, 10)
+                accion = document.getElementById('movimiento'+idProd).value
+                usuario = document.getElementById('userExt'+idProd).value
+                cantidadModificar = parseInt(document.getElementById('cantidad'+idProd).value, 10)
 
                 //Se debe seleccionar un usuario encargado para realizar una modificación en inventario
                 if (usuario == "") {
@@ -197,7 +198,8 @@
                             })
                         } else if (cantidadModificar > 0) {
                             //Si es entrada y la cantidad es mayor a cero se registra
-                            document.getElementById('registrarForm').submit();
+                            //console.log(cantidadActual, accion, usuario, cantidadModificar)
+                            document.getElementById('registrarForm'+idProd).submit();
                         }
                     } else if (accion == 2) {
                         //Si es salida
@@ -217,7 +219,8 @@
                             })
                         } else if (cantidadModificar > 0 && cantidadModificar < cantidadActual) {
                             //Si se cumplen las condiciones se registra
-                            document.getElementById('registrarForm').submit();
+                            //console.log(cantidadActual, accion, usuario, cantidadModificar)
+                            document.getElementById('registrarForm'+idProd).submit();
                         }
                     } else if (accion == "") {
                         //Si no se selecciona entre entrada y salida generará un error

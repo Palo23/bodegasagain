@@ -49,6 +49,9 @@
         		<% if(roles == 2){ %>
         		<a href="Registro?action=show" class="collection-item brown-text text-darken-3">Reportes</a>
         		<% } //fin if %>
+        		<% if(roles == 3){ %>
+        		<a href="Registro?action=showExt&reporte=<%=empresa%>" class="collection-item brown-text text-darken-3">Reportes</a>
+        		<% } //fin if %>
         
         </div>
     </div>		
