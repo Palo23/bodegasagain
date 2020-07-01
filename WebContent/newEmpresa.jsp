@@ -36,7 +36,7 @@
         </div>
       </nav>
             
-        <div class="ventana9">
+        <div class="ventana9 col s12 m6">
         <!-- Se hace la distinción, si el request trae datos es un edit, sino es un insert -->
         <c:if test="${empresa != null}">
             <h5 class="bienvenido5">Editar Empresa</h5>
@@ -46,11 +46,11 @@
         </c:if>
                 
                 <!-- bloque 1-->
-                <div class="row">
+                <div class="row col s12 m6">
                 <c:if test="${empresa != null}">
                     <form action="Empresa?action=updateEmpresa" method="POST" class="col s12"
                     style="position: absolute; top: 20%; width: 760px; height: 280px;">
-                    <div class="muneco2">
+                    <div class="muneco2 col s12 m6">
                       <img class="responsive-img" src="Images/muneco2.png">
                   </div>
                     <input type="hidden" id="id" name="id" value="<c:out value='${empresa.id}'/>">
@@ -58,24 +58,24 @@
                 <c:if test="${empresa == null}">
                     <form action="Empresa?action=insertEmpresa" method="POST" class="col s12">
                 </c:if>
-                    <div class="row" style="width: 500px;">
-                        <div class="input-field col s6" style="width: 50%;">
+                    <div class="row col s12 m6" style="width: 500px;">
+                        <div class="input-field col s12 m6" style="width: 50%;">
                             <input id="nombre" name="nombre" value="<c:out value='${empresa.nombre}' />" type="text" class="validate">
                             <label for="nombre">Nombre de Empresa</label>
                         </div>
-                        <div class="input-field col s6" style="width: 50%;">
+                        <div class="input-field col s12 m6" style="width: 50%;">
                             <input id="direccion" name="direccion" value="<c:out value='${empresa.direccion}'/>" type="text" class="validate">
                             <label for="direccion">Dirección de Empresa</label>
                         </div>
                     </div>
                 <!-- bloque 2-->
-                    <div class="row" style="width: 500px;">
-                        <div class="input-field col s6"style="width: 50%;">
+                    <div class="row col s12 m6" style="width: 500px;">
+                        <div class="input-field col s12 m6" style="width: 50%;">
                             <input id="telefono" name="telefono" value="<c:out value='${empresa.telefono}' />" type="text" class="validate">
                             <label for="telefono">Teléfono empresa</label>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row col s12 m6">
                         <a href="Empresa?action=listEmpresa" class="waves-effect waves-light btn-small brown" style="float: right; margin-right: 5px;">Cancelar</a>
                         <c:if test="${empresa != null}">
                         <button type="submit" class="waves-effect waves-light btn-small brown" style="float: right; margin-right: 5px;">Actualizar</button>
@@ -89,7 +89,7 @@
               </div>
             </div>
     
-        <footer class="pie7">
+        <footer class="pie7 col s12 m6">
             <!-- Disclaimer de la pagina -->
                 <p>
                     <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>

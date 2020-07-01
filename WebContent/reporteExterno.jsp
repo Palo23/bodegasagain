@@ -42,10 +42,10 @@
                     </div>
                 </nav>
                 </div>
-                <div class="ventana7">
+                <div class="ventana7 col s12 m6">
                     <% if(roles == 3){ %>
                     <!-- Reporte de empresa propia -->
-                        <div class="row" style="width: 80%; top: 15%; left: 3%; position: absolute; height: 30px;">
+                        <div class="row col s12 m6" style="width: 80%; top: 15%; left: 3%; position: absolute; height: 30px;">
                         </div>
                             <c:if test="${nombreEmpresa.id == empresa}">
                                 <h5 class="bienvenido4">Reporte de
@@ -56,9 +56,9 @@
                                 
                                 <input type="hidden" id="empresaID" name="empresaID" value="<%=empresa%>" class="form-control">
 								
-								<div class="row" style="position: absolute; top: 25%; left: 2%; height: 70px;">
+								<div class="row col s12 m6" style="position: absolute; top: 25%; left: 2%; height: 70px;">
 								
-								<div class="col s3">
+								<div class="col s12 m6">
 									<select id="productoID" name="productoID" class="browser-default" style="height: 35px;">
 										<option value="">--  Producto --</option>
 										<c:forEach var="producto" items="${listProduct}">
@@ -67,7 +67,7 @@
 									</select>
 								</div>
 								
-								<div class="col s3">
+								<div class="col s12 m6">
 									<select id="tipoMov" name="tipoMov" class="browser-default" style="height: 35px;">
 										<option value="">-- Transaccion --</option>
 										<option value="1">Entrada</option>
@@ -75,10 +75,10 @@
 									</select>
 								</div>
                                 
-                                <div class="col s3">
+                                <div class="col s12 m6">
 									<input type="date" id="sd" name="sd" class="form-control"  style="width: 150px;">
 								</div>
-								<div class="col s3">
+								<div class="col s12 m6">
 									<input type="date" id="ed" name="ed" class="form-control" style="width: 150px;">
 								</div>
                                     <button class="btn-floating btn-small btn tooltipped waves-effect brown" type="submit" 
@@ -86,7 +86,7 @@
 								</div>
 								</form>
                             </c:if>
-                            <table class="tabla4">
+                            <table class="tabla4 col s12 m6">
                                 <thead>
                                     <tr style="width: 100%;">
                                         <th class="btns2">Tipo de movimiento</th>
@@ -120,7 +120,7 @@
 					<% } %>
                 </div>
 
-                <footer class="pie5">
+                <footer class="pie5 col s12 m6">
                     <!-- Disclaimer de la pagina -->
                     <p>
                         <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>

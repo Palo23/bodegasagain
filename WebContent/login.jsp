@@ -19,8 +19,8 @@
 
 <body style="background-image: url('Images/fondo1.jpg');">
     
-    <div class="ventana">
-        <div class="logo">
+    <div class="ventana col s12 m6">
+        <div class="logo col s12 m6">
             <img class="responsive-image" src="Images/logo2.png">
         </div>
         <h6 class="bienvenido">Bienvenido, por favor ingresa</h6>
@@ -41,9 +41,9 @@
 
     <footer class="pie">
     <!-- Disclaimer de la pagina -->
-        <p>
+    <div class="col s12 m6">
             <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>
-        </p> 
+    </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="js/toastr.js"></script>

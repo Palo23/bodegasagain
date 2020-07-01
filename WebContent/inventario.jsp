@@ -44,10 +44,10 @@
        
         </nav>
     </div>
-        <div class="ventana4">
+        <div class="ventana4 col s12 m6">
         <!-- Si el usuario es admin o inventarista puede ver los invantarios de todas las empresas -->
             <% if(roles == 1 || roles == 2){ %>
-                <div class="row" style="width: 643px; top: 15%; position:relative;">
+                <div class="row col s12 m6" style="width: 643px; top: 15%; position:relative;">
                     <form action="Inventario?action=all" method="POST">
                         <select id="idEmpresa" name="idEmpresa" class="browser-default" onchange="this.form.submit()" style="width: 50%; float: left;">
                <option value="" disabled selected>-- Selecciona la empresa --</option>
@@ -68,7 +68,7 @@
                     <c:if test="${nombreEmpresa == null}">
                         <h5 class="bienvenido4">Tabla de contenido</h5>
                     </c:if>
-                    <table class="tabla2">
+                    <table class="tabla2 col s12 m6">
                         <thead>
                             <tr style="width: 100%;">
                                 <th class="btns2">Código</th>
@@ -93,8 +93,8 @@
                                         </tr>
                                         
                                         <!-- Modal para registro de entradas/salidas -->
-                                        <div id="<c:out value='${prod.id}'/>" class="modal" style="top: -25%; width: 80%;">
-                                            <div class="modal-content">
+                                        <div id="<c:out value='${prod.id}'/>" class="modal col s12 m6" style="top: -25%; width: 80%;">
+                                            <div class="modal-content col s12 m6">
                                                 <input type="text" value="<c:out value='${nombreEmpresa.nombre}'/>" disabled>
                                                 <form id="registrarForm<c:out value='${prod.id}'/>" action="Inventario?action=updateCant" method="POST">
                                                     <input type="hidden" id="empresaRecarga<c:out value='${prod.id}'/>" name="empresaRecarga" value="<c:out value='${nombreEmpresa.id}'/>">
@@ -114,7 +114,7 @@
                                                     <input id="cantidad<c:out value='${prod.id}'/>" name="cantidad" type="number" placeholder="Cantidad que entra/sale">
                                                     <label>Producto disponible</label>
                                                     <input id="disponible<c:out value='${prod.id}'/>" name="disponible" value="<c:out value='${prod.cantidad}'/>" disabled>
-                                                    <div class="modal-footer">
+                                                    <div class="modal-footer col s12 m6">
                                                         <button onclick="comprobar(<c:out value='${prod.id}'/>)" class="modal-close waves-effect waves-green btn-flat">Registrar</button>
                                                         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
                                                     </div>
@@ -153,10 +153,10 @@
 
         </div>
 
-        <footer class="pie3">
+        <footer class="pie3 col s12 m6">
             <!-- Disclaimer de la pagina -->
-            <p>
-                <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>
+            <p>    
+            <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>
             </p>
         </footer>
         <script>

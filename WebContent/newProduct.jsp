@@ -36,18 +36,18 @@
         </div>
       </nav>
         </div>
-        <div class="ventana8">
+        <div class="ventana8 col s12 m6">
             <h5 class="bienvenido5">Agregar Producto</h5>
-                <div class="muneco3">
+                <div class="muneco3 col s12 m6">
                     <img class="responsive-img" src="Images/muneco3.png">
                 </div>
                 <!-- bloque 1-->
-                <div class="formulario">
-                <div class="row">
+                <div class="formulario col s12 m6">
+                <div class="row col s12 m6">
                 <form action="Inventario?action=insert" method="POST" class="col s12"
                 style="position: absolute; top: 20%;">
-                    <div class="row">
-                    	<div class="seleccion">
+                    <div class="row col s12 m6">
+                    	<div class="seleccion col s12 m6">
                             <label>Seleccionar Empresa</label>
                             <select id="empresa" name="empresa" class="browser-default" style="width: 80%;">
                                 <option value="" disabled selected>-- Seleccionar empresa --</option>
@@ -56,28 +56,28 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="input-field col s6" style="width: 30%;">
+                        <div class="input-field col s12 m6" style="width: 30%;">
                             <input id="codigo" name="codigo" type="text" class="validate">
                             <label for="codigo">Código de producto</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6"style="width: 30%;">
+                    <div class="row col s12 m6">
+                        <div class="input-field col s12 m6"style="width: 30%;">
                             <input id="nombre" type="text" name="nombre" class="validate">
                             <label for="nombre">Nombre de Producto</label>
                         </div>
-                        <div class="input-field col s6"style="width: 30%;">
+                        <div class="input-field col s12 m6"style="width: 30%;">
                             <input id="cantidad" name="cantidad" type="text" value="0" class="validate">
                             <label for="cantidad">Cantidad</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6"style="width: 30%;">
+                    <div class="row col s12 m6">
+                        <div class="input-field col s12 m6"style="width: 30%;">
                             <input id="bodega" name="bodega" type="text" class="validate">
                             <label for="bodega">Número de bodega</label>
                         </div>
                     </div>
-                    <div class="rowbtns">
+                    <div class="rowbtns col s12 m6">
                         <a href="Inventario?action=show" class="waves-effect waves-light btn-small brown" 
                         style="float: right; margin-right: 5px; top: 15%;">Cancelar</a>
                             <button type="submit" class="waves-effect waves-light btn-small brown" 
@@ -86,7 +86,7 @@
                 </form>
         </div>
     
-        <footer class="pie6">
+        <footer class="pie6 col s12 m6">
             <!-- Disclaimer de la pagina -->
                 <p>
                     <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>

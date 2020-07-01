@@ -36,7 +36,7 @@
         </div>
       </nav>
         </div>
-        <div class="ventana6">
+        <div class="ventana6 col s12 m6">
             <c:if test="${user != null}">
             <!-- Se hace la distinción, si el request trae datos es un update, sino es un insert -->
             <h5 class="bienvenido5">Editar Usuario</h5>
@@ -44,12 +44,12 @@
             <c:if test="${user == null}">
             <h5 class="bienvenido5">Agregar Usuario</h5>
             </c:if>
-                <div class="muneco">
+                <div class="muneco col s12 m6">
                     <img class="responsive-img" src="Images/muneco.png">
                 </div>
                 <!-- bloque 1-->
-                <div class="formulario">
-                <div class="row">
+                <div class="formulario col s12 m6">
+                <div class="row col s12 m6">
                 <c:if test="${user != null}">
                 <form action="Usuario?action=update" method="POST" class="col s12">
                 </c:if>
@@ -61,51 +61,51 @@
                         <input type="hidden" id="idrol" name="idrol" value="<c:out value='${user.id_rol}' />" />
                         <input type="hidden" id="idempresa" name="idempresa" value="<c:out value='${user.id_empresa}' />" />
                     </c:if>
-                    <div class="row">
-                        <div class="input-field col s6" style="width: 30%;">
+                    <div class="row col s12 m6">
+                        <div class="input-field col s12 m6" style="width: 30%;">
                             <input id="nombre" name="nombre" type="text" value="<c:out value='${user.nombre}' />" class="validate">
                             <label for="nombre">Nombre</label>
                         </div>
-                        <div class="input-field col s6" style="width: 30%;">
+                        <div class="input-field col s12 m6" style="width: 30%;">
                             <input id="apellido" name="apellido" type="text" value="<c:out value='${user.apellido}' />" class="validate">
                             <label for="apellido">Apellido</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6"style="width: 30%;">
+                    <div class="row col s12 m6">
+                        <div class="input-field col s12 m6"style="width: 30%;">
                             <input id="dui" type="text" name="dui" value="<c:out value='${user.dui}' />" class="validate">
                             <label for="dui">Documento de Identidad</label>
                         </div>
-                        <div class="input-field col s6"style="width: 30%;">
+                        <div class="input-field col s12 m6"style="width: 30%;">
                             <input id="direccion" name="direccion" type="text" value="<c:out value='${user.direccion}' />" class="validate">
                             <label for="direccion">Dirección</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6"style="width: 30%;">
+                    <div class="row col s12 m6">
+                        <div class="input-field col s12 m6"style="width: 30%;">
                             <input id="telefono" name="telefono" type="text" value="<c:out value='${user.telefono}' />" class="validate">
                             <label for="telefono">Teléfono</label>
                         </div>
-                        <div class="input-field col s6"style="width: 30%;">
+                        <div class="input-field col s12 m6"style="width: 30%;">
                             <input id="username" name="username" type="text" value="<c:out value='${user.username}' />" class="validate">
                             <label for="username">Nombre de Usuario</label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="input-field col s6"style="width: 30%;">
+                    <div class="row col s12 m6">
+                        <div class="input-field col s12 m6"style="width: 30%;">
                             <input id="correo" name="correo" type="email" value="<c:out value='${user.correo}' />" class="validate">
                             <label for="correo">Correo</label>
                         </div>
                         <c:if test="${user == null}">
-                        <div class="input-field col s6"style="width: 30%;">
+                        <div class="input-field col s12 m6"style="width: 30%;">
                             <input id="pass" name="pass" type="password" value="<c:out value='${user.pass}' />" class="validate">
                             <label for="pass">Contraseña</label>
                         </div>
                         </c:if>
                     </div>
                 <!-- bloque 2-->
-                    <div class="row">
-                        <div class="seleccion">
+                    <div class="row col s12 m6">
+                        <div class="seleccion col s12 m6">
                             <label>Seleccionar Empresa</label>
                             <select id="empresa" name="empresa" class="browser-default" style="width: 80%;">
                                 <option value="" disabled selected>-- Opciones --</option>
@@ -114,7 +114,7 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <div class="seleccion">
+                        <div class="seleccion col s12 m6">
                         <label>Seleccionar rol</label>
                             <select id="rol" name="rol" class="browser-default" style="width: 80%;">
                                 <option value="" disabled selected>-- Opciones --</option>
@@ -124,7 +124,7 @@
                             </select>
                           </div>
                     </div>
-                    <div class="rowbtns">
+                    <div class="rowbtns col s12 m6">
                         <a href="Usuario?action=list" class="waves-effect waves-light btn-small brown" 
                         style="float: right; margin-right: 5px; top: 15%;">Cancelar</a>
                          <c:if test="${user == null}">
@@ -139,7 +139,7 @@
                 </form>
         </div>
     
-        <footer class="pie4">
+        <footer class="pie4 col s12 m6">
             <!-- Disclaimer de la pagina -->
                 <p>
                     <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>

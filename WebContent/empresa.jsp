@@ -36,11 +36,11 @@ pageEncoding="UTF-8"%>
     </div>
   </nav>
 </div>
-    <div class="ventana5">
+    <div class="ventana5 col s12 m6">
     
     
     <!-- Dropdown Trigger -->
-    <div style="top: 8%; position: absolute;  left: 83%;">
+    <div class= "col s12 m6" style="top: 8%; position: absolute;  left: 83%;">
   <a class="dropdown-trigger btn-floating btn tooltipped waves-effect waves-light btn-large brown" href='#' data-target='dropdown1' data-position="right" data-tooltip="Opciones"><i class="large material-icons">expand_more</i></a>
     </div>
     <!-- Dropdown Structure -->
@@ -56,7 +56,7 @@ pageEncoding="UTF-8"%>
   </ul>
     
             <h5 class="bienvenido3">Tabla de contenido</h5>
-            <table class="tabla3">
+            <table class="tabla3 col s12 m6">
                 <thead>
                     <tr style="width: 100%;">
                         <th class="btns3">ID</th>
@@ -76,7 +76,7 @@ pageEncoding="UTF-8"%>
                   <td class="btns3"><c:out value="${empresa.nombre}" /></td>
                   <td class="btns3"><c:out value="${empresa.direccion}" /></td>
                   <td style="text-align: center;">
-                    <div class="row" style="height: 15px; width: 160px;">
+                    <div class="row col s12 m6" style="height: 15px; width: 160px;">
                     <a href="Empresa?action=editEmpresa&id=<c:out value='${empresa.id}' />" 
                     class="btn-floating btn-small btn tooltipped waves-effect brown modal-trigger" data-position="bottom" data-tooltip="Editar empresa"><i class="material-icons">edit</i></a>
                     <c:if test="${inactivo != 'inactivo'}">
@@ -92,8 +92,8 @@ pageEncoding="UTF-8"%>
                 </tr>
                   				 
                                      <!-- Modal Structure -->
-                        <div id="<c:out value='${empresa.id}'/>" class="modal">
-                          <div class="modal-content">
+                        <div id="<c:out value='${empresa.id}'/>" class="modal col s12 m6">
+                          <div class="modal-content col s12 m6">
                               <h4>Confirmar</h4>
                               <c:if test="${inactivo == 'inactivo'}">
                               <h5>¿Deseás activar a <c:out value='${empresa.nombre}'/>?</h5>
@@ -102,7 +102,7 @@ pageEncoding="UTF-8"%>
                               <h5>¿Deseás eliminar a <c:out value='${empresa.nombre}'/>?</h5>
                               </c:if>
                           </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer col s12 m6">
                         <c:if test="${inactivo == 'inactivo'}">
                         <a href="Empresa?action=activarEmpresa&id=<c:out value='${empresa.id}' />" class="modal-close waves-effect waves-green btn-flat">Activar</a>
                         </c:if>
@@ -123,7 +123,7 @@ pageEncoding="UTF-8"%>
     
     </div>
 
-    <footer class="pie5">
+    <footer class="pie5 col s12 m6">
         <!-- Disclaimer de la pagina -->
             <p>
                 <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>

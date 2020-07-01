@@ -33,13 +33,13 @@
         </div>
       </nav>
             
-        <div class="ventana3">
+        <div class="ventana3 col s12 m6">
           <div style="top: 12%; position: absolute;  left: 83%;">
                 <a href="Usuario?action=new" class="btn-floating btn-large btn tooltipped waves-effect brown" 
                 style="float: right;" data-position="right" data-tooltip="Agregar usuario"><i class="material-icons">add</i></a>
           </div>    
             <h5 class="bienvenido3">Tabla de contenido</h5>
-                <table class="tabla">
+                <table class="tabla col s12 m6">
                     <thead>
                       <tr style="width: 100%;">
                           <th class="btns">Nombre</th>
@@ -65,12 +65,12 @@
                     style="margin-left: 5px;" data-position="bottom" data-tooltip="Eliminar usuario"><i class="material-icons">not_interested</i></a>
                   </td>					 
                                      <!-- Modal Structure -->
-                        <div id="<c:out value='${user.id}'/>" class="modal">
+                        <div id="<c:out value='${user.id}'/>" class="modal col s12 m6">
                           <div class="modal-content">
                               <h4>Confirmar</h4>
                               <h5>¿Deseás eliminar al usuario <c:out value='${user.nombre}'/> <c:out value='${user.apellido}'/>?</h5>
                           </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer col s12 m6">
                             <a href="Usuario?action=delete&id=<c:out value='${user.id}' />" class="modal-close waves-effect waves-green btn-flat">Eliminar</a>
                             <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancelar</a>
                         </div>
@@ -85,7 +85,7 @@
                   
         </div>
     
-        <footer class="pie3">
+        <footer class="pie3 col s12 m6">
             <!-- Disclaimer de la pagina -->
                 <p>
                     <h5>SysInvent - Todos los derechos reservados - Año 2020 </h5>
